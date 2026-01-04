@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1- Create a student literal object that contains: name, University, faculty, and final grade, and use print his data in the console using template literals in this format: 
+        let student = {
+            name: "abdallah",
+            university: "NUB",
+            faculty: "computer science",
+            finalgrade: 90
+        };
+        console.log(`${student.name} is a student in faculty of ${student.faculty} in university ${student.university} and his final grade is ${student.finalgrade}`);
+    </script>
+<!--2 -Create new custom object Queue, its constructor takes maxSize, and has InQueue, DeQueue. 
+
+a)You’ll need to define local variable toq (private) to define the last place used in the queue, and another local variable as array that will hold the elements. 
+b)Create privileged method (getCurrentSize) that returns the current size of the queue
+ c)Create internal function “getQueueElements” that prints queue elements, and returns the size of queue, and create public function “viewQueue” to call it.
+ 
+ d)Create new public method “returnQueue” that returns “getQueueElements” inner function as function expression (literal). The inner function should return an array of elements.
+ e)Create an object from queue, and use inQueue and dequeuer functions to add some elements 
+ f)Then use returnQueue() function that will return a reference to function, and put it in a variable. Then call that variable (which refers to function), and call it, to return the array of elements. 
+
+Can the inner literal function access the array local variable of the outer function? Why? 
+
+What’s closure? 
+g)Use prototype to add new function to queue “isEmpty()” that return Boolean. -->
+    <script>
+        function Queue(maxSize){
+            let toq=0;
+            let array=[];
+           
+            this.getCurrentSize=function(){
+                console.log(`the current size of the queue is ${array.length}`);
+                return array.length;
+            };
+            
+            function getqueueelements(){
+                console.log(`the queue elements are ${array}`);
+                return array.length;
+            }
+            
+            this.viewQueue=function(){
+                getqueueelements();
+            };
+            
+            this.returnQueue=function(){
+                return getqueueelements;
+            };
+
+            this.inQueue=function(element){
+                if(array.length<maxSize){
+                    array.push(element);
+                }
+                else{
+                    console.log("queue is full");
+                }
+            };
+            
+            this.dequeue=function(){
+                if(array.length==0){
+                    console.log("queue is empty");
+                }
+                else{
+                    array.shift();
+                }
+            };
+            
+            this.isEmpty=function(){
+                return array.length===0;
+            };
+        }
+
+        let queue = new Queue(5);
+        queue.inQueue(1);
+        queue.inQueue(2);
+        queue.dequeue();
+        queue.viewQueue();
+        queue.returnQueue();
+        console.log(`the queue elements are ${queue.returnQueue()}`);
+        console.log(queue.isEmpty());
+    </script>
+</body>
+</html>
