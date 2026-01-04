@@ -1,0 +1,37 @@
+1-	Create array that contain some tips about JavaScript (Array of 10 strings, each string is tip about JS), and show random tip for the user each time he opens the page "Tip of the day". 
+
+2-	Make a button that display the current date and time in local format on the page.
+
+3-	Ask the user to enter his Email, and use function strings (Don’t use RegExp) to check if the Email contains @, and not in the first or last index.
+
+4-	Prompt user to enter his Full Name and email address, and use regular expression only (don't use string functions) to validate his input to make sure it is in correct format using these criteria: 
+a.	Full Name should be characters only (without numbers or special characters) and has the following structure:
+•	Characters (alphabetic only) more than 3.
+•	Then one space.
+•	And finally some other characters (alphabetic only) more than 3 
+•	This pattern may be repeated, so it can contain other spaces but after each space must be 3 alphabetic characters at least (like full name, each part is 3 letters at least, and separated by a space).
+•	And shouldn’t start or end with spaces or special characters.
+b.	Email must be from Egypt (.eg domain), for example name@domain.com.eg (.com.eg, .net.eg, .edu.eg or .org.eg [.eg is a must], don’t allow any other domains).
+c.	Make the prompt appear to the user for each of the inputs until he enters correct format (Repeat the prompt for each wrong input of each one until he enters it correctly).
+
+5-	Use the same full name regular expression with input (Use pattern attribute, without using JavaScript code).
+
+6-	Create an array that hold the following students grades : 60, 100,10,15,85, and handle the following:
+a.	Sort the array numerically descending.
+b.	Using the sorted Array find the highest student degree (first degree less than or equal to 100) [Use find()].
+c.	Print the grades of all students with grades below 60 [Use filter()].
+
+7-	Create an array of objects that hold student name along with his degree (Each element of the array is an object has 2 properties: Name and Degree).
+a.	Find student Name, who got degree between 90 and 100 [Use find()].
+b.	Print students names, who got a degree less than 60 [Use filter()].
+c.	Add a new student to the array [Use push()], and then use for…in to print all elements of the array.
+d.	Remove the last student of the array [Use pop()], and then use for…of to print all elements of the array.
+e.	Sort the array alphabetically based on the student name. 
+
+
+8-	Show prompt that ask user to enter his birth date and tell user to enter the date in the following format (DD – MM – YYYY) ex. 22–01–1999, and then create function that take user input as a parameter and ensure that the string is entered in this format (that user entered string is 10 characters and contains (-) after the second character and after fifth character).[Don't use RegExp, use string functions].
+a.	If the user input was correct: make the function create new date object, and initialize it with Day, Month, year values (using date constructor: Date(y,m,d)) and then show alert to the user with the date in date string format. 
+b.	If user input wasn't correct, show alert saying "Wrong Date Format". 
+c.	Create button “show date” that calls the function. 
+
+9-	Use Try catch and onError to handle any errors in your page.

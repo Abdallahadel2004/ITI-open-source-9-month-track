@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1 id="welcome"></h1>
+
+    <script>
+        var url = new URLSearchParams(window.location.search);
+        var username = url.get('username');
+        document.getElementById("welcome").innerHTML = "<b>Welcome " + username + "</b>";
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML DOM Manipulation</title>
+</head>
+<body>
+    <h1>HTML DOM Manipulation</h1>
+    
+    <!-- 5) Control Buttons -->
+    <button onclick="createImage()">5.a) Create Image</button>
+    <button onclick="appendImage()">5.c) appendChild()</button>
+    <button onclick="insertImage()">5.c) insertBefore()</button>
+    <button onclick="countChildren()">5.d) Count Children</button>
+    <button onclick="removeImage()">5.e) Remove Image</button>
+    
+    <br><br>
+    
+    <!-- 5.c) Target div for appending images -->
+    <div id="imageContainer" style="border: 1px solid black; min-height: 100px; padding: 10px;">
+        Images will appear here
+    </div>
+
+    <script>
+        // 5) Global variable to store created image
+        var createdImage = null;
+
+        // 5.a) Create image node using document.createElement()
+        function createImage() {
+            createdImage = document.createElement("img");
+            alert("5.a) Image element created using document.createElement('img')");
+            
+            // 5.b) Set source image using setAttribute()
+            createdImage.setAttribute("src", "Resources for Assignments/Images For Slide Show/1.jpg");
+            createdImage.setAttribute("width", "200");
+            alert("5.b) Image source set using setAttribute()");
+        }
+
+        // 5.c) Append image to div using appendChild()
+        function appendImage() {
+            if (!createdImage) {
+                alert("Please create an image first!");
+                return;
+            }
+            
+            var container = document.getElementById("imageContainer");
+            // 5.c) appendChild() - adds element at the END
+            var clonedImage = createdImage.cloneNode(true);
+            container.appendChild(clonedImage);
+            alert("5.c) Image appended using appendChild() - adds at the END of children");
+        }
+
+        // 5.c) Insert image using insertBefore()
+        function insertImage() {
+            if (!createdImage) {
+                alert("Please create an image first!");
+                return;
+            }
+            
+            var container = document.getElementById("imageContainer");
+            // 5.c) insertBefore() - adds element BEFORE a reference node
+            var clonedImage = createdImage.cloneNode(true);
+            var firstChild = container.firstChild;
+            container.insertBefore(clonedImage, firstChild);
+            alert("5.c) Image inserted using insertBefore() - adds BEFORE the first child\n\nDifference: appendChild() adds at END, insertBefore() adds at SPECIFIC position");
+        }
+
+        // 5.d) Alert the number of child nodes
+        function countChildren() {
+            var container = document.getElementById("imageContainer");
+            var childCount = container.childNodes.length;
+            
+            alert("5.d) element.childNodes.length = " + childCount + "\n\nchildNodes includes ALL nodes (text nodes, comments, elements).\nText nodes are created by whitespace/newlines in HTML.");
+        }
+
+        // 5.e) Remove the added image using removeChild()
+        function removeImage() {
+            var container = document.getElementById("imageContainer");
+            var images = container.getElementsByTagName("img");
+            
+            if (images.length > 0) {
+                var lastImage = images[images.length - 1];
+                container.removeChild(lastImage);
+                alert("5.e) Image removed using removeChild()");
+            } else {
+                alert("No images to remove!");
+            }
+        }
+    </script>
+</body>
+</html>

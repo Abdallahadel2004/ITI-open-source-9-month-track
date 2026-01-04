@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab 3</title>
+</head>
+<body>
+    
+    <!--1-	Create a new page that has a textbox, and alert the code of key pressed on a textbox, and which mouse button clicked on it.-->
+    <input onkeydown="alert('the key pressed is ' + (event.key))" 
+    onmousedown="mousekey(event)" 
+    type="text" id="input" placeholder="enter your data">
+
+   
+   <script>
+        function mousekey(event){
+            if(event.button === 0){
+                alert("left mouse button clicked");
+            }
+            else if(event.button === 2){
+                alert("right mouse button clicked");
+            }
+        }
+    </script>
+
+
+<br>
+<!--2-	On the same page, Make a button (Start clock), that showing alert saying “Clock Started” and displays clock with current time in local format (time only without date) in a div updated every second.-->
+<button onclick="startclock()">startclock</button>
+<div id="clock"></div>
+<script>
+    function startclock(){
+        alert("Clock Started");
+        var interval = setInterval(function(){
+            document.getElementById("clock").innerHTML = new Date().toLocaleTimeString();
+        }, 1000);
+       
+        document.onkeydown = function(event){
+            if(event.key === "w" && event.altKey){
+                clearInterval(interval);
+                alert("Clock Stopped");
+            }
+        };
+    }
+
+
+</script>
+<br><br>
+<!--4-	Create a login form that redirect to another page when user submit the form-->
+<form action="welcome.html" method="get">
+    <input type="text" name="username" placeholder="Enter your user name here">
+    <input type="password" name="password" placeholder="Enter your password">
+    <button type="submit">Login</button>    
+</form>
+
+<!--5-	Make a link that on its onClick event opens new advertising window after 3 seconds-->
+<a href="advertising.html" onclick="openAdvertising(); return false;">Click here to open advertising window </a>
+<a href="javascript:closepage()">Close Page</a>
+<script>
+    var advertisingWindow = null;
+    
+    function openAdvertising() {
+        alert("Advertising window will open in 3 seconds...");
+        setTimeout(function() {
+           advertisingWindow = window.open("advertising.html", "_blank", "width=500,height=500");
+        }, 3000);
+    }
+    function closepage(){
+        if(advertisingWindow && !advertisingWindow.closed) {
+            advertisingWindow.close();
+        } else {
+            alert("No popup window is open");
+        }
+    }
+</script>
+<br><br>
+<!--6- on registration.html file open it->
+
+
+
+<!--7- on the same page  registration.html file open it-->
+<br><br>
+
+</body>
+</html>

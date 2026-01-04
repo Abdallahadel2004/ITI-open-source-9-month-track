@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Lab</title>
+</head>
+<body>
+    <h1>JS Lab</h1>
+    <script>
+        //1)
+        var tips=["let in js","var in js","const in js","hoisting in js","scope in js","closure in js","this in js","prototype in js","inheritance in js","polymorphism in js"];
+        var randomtip=tips[Math.floor(Math.random()*tips.length)];
+        document.write("Tip of the day: " + randomtip);
+    </script>
+    <br>
+    <!--2)--> 
+    <button onclick="document.write('the time is :' + new Date().toLocaleTimeString())" >Show time</button>
+    <br>
+    <!--3)-->
+       <script>
+        var email=prompt("enter your email");
+        if(email.includes("@") && email.indexOf("@") !== 0 && email.indexOf("@") !== email.length - 1){
+            alert("email is valid");
+        }
+        else{
+            alert("email is invalid");
+        }
+       </script>
+       <br>
+       <!--4)-->
+       <script>
+        while(true){
+        var fullname=prompt("enter your fullname");
+        if(fullname.match(/^[a-zA-Z]{3,}[ ][a-zA-Z]{3,}$/))
+        break;
+        else{
+            alert("fullname is invalid");
+        }
+      
+        while(true){
+            var emaill=prompt("enter your email?");
+            if(emaill.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.(com|net|edu|org)\.eg$/))
+            break;
+            else{
+                alert("email is invalid!!!");
+            }
+        }
+    }
+       </script>
+       <br>
+<!--5)-->
+      <input type="text" pattern="^[a-zA-Z]{3,}[ ][a-zA-Z]{3,}$" placeholder="Enter your full name" required>
+      <br>
+
+<!--6-->
+     <script>
+        var grades=[60,100,10,15,85];
+        grades.sort (function(a,b)
+        {return b-a;} );
+        document.write("the highest grade is " + grades[0]);
+        var lowestgrade= grades.find(function(grade){return grade < 60;});
+        document.write("first degree less than or equal to 100 is " + lowestgrade);
+        var filter=grades.filter(function(grade){return grade < 60;});
+        document.write("the grades below 60 are " + filter);
+     </script>
+<br><br>
+<!--7-->
+<script>
+    var students=[{name:"abdallah",grades:70},{name:"messi",grades:100},{name:"ronaldo",grades:50},{name:"salah",grades:90}];
+    var highestgrade=students.find(function(student){return student.grades >= 90 && student.grades <= 100;});
+    document.write("the student with highest grade is " + highestgrade.name + "<br>");
+    var filter=students.filter(function(student){return student.grades < 60;});
+    for(var i=0; i<filter.length; i++){
+        document.write("student with grade below 60: " + filter[i].name + "<br>");
+    }
+
+    students.push({name:"ahmed",grades:80});
+    for(var student in students){
+        document.write("the student is " + students[student].name + " and the grade is " + students[student].grades + "<br>");
+    } 
+    students.pop();
+    for(var student of students){
+        document.write("the student is " + student.name + " and the grade is " + student.grades + "<br>");
+    }
+    students.sort((a, b) => a.name.localeCompare(b.name));
+    document.write("Students sorted alphabetically by name:<br>");
+    for(var student of students){
+        document.write("the student is " + student.name + " and the grade is " + student.grades + "<br>");
+    }
+
+ 
+    
+</script>
+    
+<br><br>
+<!--8-->
+<script>
+ function checkdate(birthdate){
+    if(birthdate.length === 10 && birthdate.indexOf("-") === 2 && birthdate.indexOf("-",birthdate.indexOf("-")+1) === 5){
+        var date=new Date(birthdate);
+        console.log("the date is " + date);
+    }
+    else{
+        alert("wrong date format");
+    }
+ }
+ var birthdate=prompt("enter your birth date in the format DD-MM-YYYY");
+ checkdate(birthdate);
+</script>
+<br><br>
+<!--9-->
+<script>
+    try{
+        var x=10;
+        console.log("the value of x is " + x);
+        throw new Error("this is an error");
+    }
+    catch(error){
+        console.log("error: " + error);
+    }
+  
+</script>
+</body>
+</html>

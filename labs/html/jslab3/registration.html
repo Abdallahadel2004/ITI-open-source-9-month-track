@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        /* Part 11a: Show * besides required inputs using ::after */
+        .required-field::after {
+            content: " *";
+            color: red;
+        }
+        
+        /* Part 11b: Invalid inputs styling */
+        input:invalid {
+            border: 2px solid black;
+        }
+        
+        input:invalid + span.error-message {
+            display: block;
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        /* Part 11c: Valid inputs styling */
+        input:valid {
+            border: 2px solid white;
+        }
+        
+        input:valid + span.error-message {
+            display: none;
+        }
+        
+        /* Default input styling */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="file"] {
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+        }
+        
+        /* Part 12: Rounded link button */
+        .rounded-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s;
+        }
+        
+        .rounded-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form action="Thankyou.html" method="get">
+        <div>
+            <input type="hidden" name="userid" id="userid" value="USER001">
+        </div>
+
+        <div class="required-field">
+            <label for="firstname">First Name</label><br>
+            <input type="text" id="firstname" name="firstname" required tabindex="1" accesskey="f" autofocus size="50">
+            <span class="error-message">Not valid</span>
+        </div>
+        <!--7-->
+        <script>
+            document.getElementById("firstname").addEventListener("keydown", function(event){
+                if(event.key.match(/^[0-9]+$/)){
+                    event.preventDefault();
+                    alert("numbers are not allowed");
+                }
+            });
+        </script>
+
+
+        <div class="required-field">
+            <label for="lastname">Last Name</label><br>
+            <input type="text" id="lastname" name="lastname" required tabindex="2" accesskey="l" size="50">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <div class="required-field">
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required tabindex="3" accesskey="e" size="50">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <div>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" tabindex="4" accesskey="p" size="50">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <div>
+            <label for="repeatpassword">Repeat Password</label><br>
+            <input type="password" id="repeatpassword" name="repeatpassword" tabindex="5" accesskey="r" size="50">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <div>
+            <label for="birthdate">Birth Date</label><br>
+            <input type="date" id="birthdate" name="birthdate" tabindex="6" accesskey="b">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <div>
+            <label for="userpicture">User Picture</label><br>
+            <input type="file" id="userpicture" name="userpicture" accept="image/*" tabindex="7" accesskey="u">
+            <span class="error-message">Not valid</span>
+        </div>
+        <br>
+
+        <fieldset>
+            <legend><b>Gender</b></legend>
+            <div>
+                <input type="radio" id="male" name="gender" value="male" tabindex="8" accesskey="m">
+                <label for="male">Male</label>
+            </div>
+            <div>
+                <input type="radio" id="female" name="gender" value="female" tabindex="9" accesskey="w">
+                <label for="female">Female</label>
+            </div>
+        </fieldset>
+
+        <div>
+            <label for="faculty">Faculty</label><br>
+            <select id="faculty" name="faculty" tabindex="10" accesskey="a" size="1">
+                <option value="">Select Faculty</option>
+                <option value="cs">Engineering</option>
+                <option value="medicine">Medicine</option>
+                <option value="nub">Nahda University</option>
+            </select>
+        </div>
+        <br>
+
+        <fieldset>
+            <legend><b>Interests</b></legend>
+            <div>
+                <input type="checkbox" id="programming" name="interests" value="programming" tabindex="11" accesskey="g">
+                <label for="programming">Programming</label>
+            </div>
+            <div>
+                <input type="checkbox" id="reading" name="interests" value="reading" tabindex="12" accesskey="i">
+                <label for="reading">Reading</label>
+            </div>
+            <div>
+                <input type="checkbox" id="swimming" name="interests" value="swimming" tabindex="13" accesskey="s">
+                <label for="swimming">Swimming</label>
+            </div>
+            <div>
+                <input type="checkbox" id="football" name="interests" value="football" tabindex="14" accesskey="o">
+                <label for="football">Football</label>
+            </div>
+            <div>
+                <input type="checkbox" id="gaming" name="interests" value="gaming" tabindex="15" accesskey="n">
+                <label for="gaming">Gaming</label>
+            </div>
+            <div>
+                <input type="checkbox" id="music" name="interests" value="music" tabindex="16" accesskey="c">
+                <label for="music">Music</label>
+            </div>
+        </fieldset>
+
+        <div>
+            <label for="about">About you</label><br>
+            <textarea id="about" name="about" rows="5" cols="50" tabindex="17" accesskey="y"></textarea>
+        </div>
+        <br>
+
+        <div class="required-field">
+            <input type="checkbox" id="terms" name="terms" required tabindex="18" accesskey="t">
+            <label for="terms">
+                I agreed to 
+                <a href="terms.html" target="_blank">terms and conditions</a>
+            </label>
+        </div>
+        <!--6-->
+        <script>
+            document.getElementById("terms").addEventListener("click", function() {
+                window.open("terms.html", "_blank", "width=500,height=500");
+            });
+        </script>
+        <br>
+
+        <div align="center">
+            <button type="submit" tabindex="19" accesskey="h">Submit</button>
+            <button type="reset" tabindex="20" accesskey="z">Reset</button>
+        </div>
+        
+        <div align="center" style="margin-top: 20px;">
+            <a href="#" class="rounded-button">Click Me</a>
+        </div>
+    </form>
+</body>
+</html>

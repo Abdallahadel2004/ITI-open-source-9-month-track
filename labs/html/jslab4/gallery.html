@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+</head>
+<body>
+    <h1>Photo Gallery</h1>
+    
+    <!-- 3) Image display with mouse over auto-start -->
+    <div onmouseover="startAutoPlay()" onmouseout="stopAutoPlay()">
+        <img src="Resources for Assignments/Images For Slide Show/1.jpg" alt="Gallery Image" id="galleryImage" width="400">
+    </div>
+    <br>
+    
+    <!-- 3) Control buttons -->
+    <button onclick="previousImage()">Previous</button>
+    <button onclick="playGallery()">Play</button>
+    <button onclick="stopGallery()">Stop</button>
+    <button onclick="nextImage()">Next</button>
+    
+    <p>Image <span id="currentIndex">1</span> of <span id="totalImages">8</span></p>
+    <p><i>Hover over the image to auto-play</i></p>
+
+    <script>
+        // 3) Photo Gallery Variables
+        var images = [
+            "Resources for Assignments/Images For Slide Show/1.jpg",
+            "Resources for Assignments/Images For Slide Show/2.jpg",
+            "Resources for Assignments/Images For Slide Show/3.jpg",
+            "Resources for Assignments/Images For Slide Show/4.jpg",
+            "Resources for Assignments/Images For Slide Show/5.jpg",
+            "Resources for Assignments/Images For Slide Show/6.jpg",
+            "Resources for Assignments/Images For Slide Show/7.jpg",
+            "Resources for Assignments/Images For Slide Show/8.jpg"
+        ];
+        
+        var currentIndex = 0;
+        var intervalId = null;
+
+        // 3) Update image
+        function updateImage() {
+            document.getElementById("galleryImage").src = images[currentIndex];
+            document.getElementById("currentIndex").textContent = currentIndex + 1;
+        }
+
+        // 3) Next image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        // 3) Previous image
+        function previousImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        // 3) Play - change image every 0.5 sec
+        function playGallery() {
+            if (intervalId === null) {
+                intervalId = setInterval(nextImage, 500);
+            }
+        }
+
+        // 3) Stop
+        function stopGallery() {
+            if (intervalId !== null) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        }
+
+        // 3) Auto-start on mouse over
+        function startAutoPlay() {
+            playGallery();
+        }
+
+        // 3) Stop on mouse out
+        function stopAutoPlay() {
+            stopGallery();
+        }
+    </script>
+</body>
+</html>

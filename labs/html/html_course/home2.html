@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Header */
+        .header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header img {
+            max-width: 200px;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .navbar li {
+            display: inline;
+            margin: 0 20px;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        
+        /* Main Content Container */
+        .main-container {
+            padding: 20px;
+            background-color: #f5f5dc;
+            overflow: hidden; /* Clear floats */
+            min-height: 500px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            
+        }
+        
+        /* Left Sidebar */
+        .left-sidebar {
+            width: 25%;
+            background-color: #e0e0e0;
+            float: left;
+            padding: 15px;
+            vertical-align: top;
+            height: 100%;
+            
+        }
+        
+        .login-box {
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: white;
+            border: 2px solid black;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        
+        .login-box button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Center Content */
+        .center-content {
+            width: 50%;
+            background-color: #f5f5dc;
+            float: left;
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        .center-content h2 {
+            color: red;
+        }
+        
+        .center-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .center-content li {
+            margin: 10px 0;
+        }
+        
+        /* Right Sidebar */
+        .right-sidebar {
+            width: 25%;
+            background-color: #e0e0e0;
+            float: left;
+            padding: 15px;
+            vertical-align: top;
+        }
+        
+        .photo-container {
+            width: 100%;
+            max-width: 200px;
+            height: 200px;
+            background-color: white;
+            border: 1px solid #ddd;
+            text-align: center;
+            margin: 0 auto;
+            display: table;
+        }
+        
+        .photo-container div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        .photo-container img {
+            width: 105%;
+            height: 100%;
+        }
+        
+        .news-section {
+            margin-top: 20px;
+            text-align: center;
+            height: 200px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .footer a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <a id="top"></a>
+    
+    <div class="header">
+        <img src="assets/download.jpg" alt="Website Logo">
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="home2.html">Home</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+
+    <div class="main-container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="login-box">
+                <input type="text" placeholder="User name" name="username">
+                <input type="password" placeholder="Password" name="password">
+                <button type="button">Login</button>
+            </div>
+            
+            <h2>My Pages online</h2>
+            <div style="margin: 15px 0;">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" style="margin-right: 10px;">
+                    <img src="assets/Facebook-icon.png" alt="Facebook" width="40" height="40">
+                </a>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" style="margin-right: 10px;">
+                    <img src="assets/twitter.png" alt="Twitter" width="40" height="40">
+                </a>
+            </div>
+            
+            <div style="padding: 15px; text-align: center; margin-top: 20px;">
+                <h3>Iframe Video</h3>
+                <iframe src="https://www.youtube.com/embed/2BggFNfXPGg?si=CDlQ_pP92-pCAOBo" width="100%" height="200" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Center Content -->
+        <div class="center-content">
+            <h2>My Profile</h2>
+            <ul>
+                <li><strong>Name:</strong> Abdallah adel abdelgwad</li>
+                <li><strong>Age:</strong> 21</li>
+                <li><strong>Address:</strong> Minya Shalby</li>
+                <li><strong>Phones:</strong> 01098765432</li>
+                <li><strong>Faculty:</strong> <a href="https://www.nub.edu.eg/" target="_blank" rel="noopener noreferrer">Nahda University</a></li>
+                <li><strong>Hobbies:</strong>
+                    <ol>
+                        <li>Football</li>
+                        <li>Gaming</li>
+                        <li>Programming</li>
+                    </ol>
+                </li>
+                <li><strong>Mail:</strong> <a href="mailto:abdallahadelabdelgwad@gmail.com">abdallahadelabdelgwad@gmail.com</a></li>
+            </ul>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="photo-container">
+                <div>
+                    <img src="assets/WhatsApp Image 2025-11-01 at 09.48.24_cfcf8fea.jpg" alt="Personal Photo">
+                </div>
+            </div>
+            
+            <div class="news-section">
+                <h2>News</h2>
+            </div>
+        </div>
+        
+        <!-- Clear floats -->
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="footer">
+        <p><a href="#top">Top of page</a></p>
+        <p>Copyrights © are reserved to ITI.</p>
+    </div>
+</body>
+</html>

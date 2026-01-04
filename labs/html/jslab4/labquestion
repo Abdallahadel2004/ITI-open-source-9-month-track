@@ -1,0 +1,35 @@
+Day 7 Lab Assignments
+Please do these assignments:
+1)Make a registration form (you can re-use the registration form you did before) as the following (Use HTML 5 new input types and validation attributes): 
+a.	Form fields: 
+•	Full Name (Required)
+•	Email (Required, input type: email)
+•	City (Drop-down list filled with some cities)
+•	Password
+•	Repeat password.
+•	“I accept the terms and conditions” checkbox.
+•	Register button, which redirects to another page saying: “Thank you, Full Name for registering in our website”.
+b.	Make full name text has default text “Enter your Name:” [use placeholder attribute].
+c.	When the user focus in full name text, show blue border for the input (use element.style.border=”solid 1px blue”), and remove the border when the input loses the focus.
+d.	After user finish writing his full name and leaves the text box (lost focus), if full name wasn't in correct format (not empty string and more than 3 letters), show text next to textbox saying “invalid name”, and focus the full name textbox, and select all text on it, else if full name was in correct format hide the text next to textbox.
+e.	For Password and repeat password fields, when the user leaves the repeat password field, we need to validate that they’re required, and they’re identical (The same), and if they’re not the same show text besides it saying “password and repeat password should be the same”; remove the validation message when the user enters it correctly.
+f.	Change the background color of the text input when it’s not valid to: gray, and to white when it’s valid.
+g.	For the Email, use HTML5 “Required” attribute, and input type email.
+•	You’ll remark that HTML5 validation will prevent you from submitting the form unless it’s valid, right?
+•	But for the other custom validation of the name and password & repeat password, will not prevent the form for submitting and you can submit the form even if they’re not valid, why?
+2)In the previous assignment, you’ll remark that if the full name or password and repeat password are invalid (and validation messages appear next to the text boxes), if you press the submit button, the form will submit regardless the validation you make in the blur event, so we need to fix it as the following.
+h.	Handle onSubmit event for the form, and on the event handler function, check for the validation of the full name and password, if they’re correct, then submit the form (use Submit() function), if they’re not correct stop the form submitting (use event.preventDefault()), and show message for the user saying “Plz correct the validation errors first.
+2)Redo the form validation assignment (No.1), using HTML 5 validators and CSS new pseudo class (valid and not valid), and without using JS for validation of the full name.
+2-	Use valid and not valid (Provided in lab folder) images in previous assignment instead of text for validation messages.
+
+3-	Make a photo gallery with buttons: play (start changing image every 0.5 sec), stop, next, previous, and also make it start automatically when mouse is over it.
+
+4-	Create a simple photo gallery like the following, and use opacity property to make each image fades out gradually (its opacity decreases to 0.3 gradually) when mouse is over it, and fades in gradually (its opacity increases to 1 gradually) when mouse is a way.
+  
+
+5-	Use HTML Dom, to do the following:
+a.	Create image node (using document.createElement()).
+b.	Set it source image (using setAttribute()).
+c.	Append it to a div on the page (Try appendChild() and insertBefore(), what’s the difference)?	
+d.	After appending the image, alert the number of child nodes to the div (Use element.childNodes.length), what are the count of div child nodes? And Why?
+e.	Remove the added image (using removeChild()).

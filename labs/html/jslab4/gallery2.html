@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Fade Effect</title>
+</head>
+<body>
+    <h1>Photo Gallery - Hover Fade Effect</h1>
+    
+    <!-- 4) Gallery with fade effect on hover -->
+    <img src="Resources for Assignments/Images For Slide Show/1.jpg" alt="Image 1" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/2.jpg" alt="Image 2" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/3.jpg" alt="Image 3" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/4.jpg" alt="Image 4" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <br>
+    <img src="Resources for Assignments/Images For Slide Show/5.jpg" alt="Image 5" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/6.jpg" alt="Image 6" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/7.jpg" alt="Image 7" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    <img src="Resources for Assignments/Images For Slide Show/8.jpg" alt="Image 8" width="200" onmouseover="fadeOut(this)" onmouseout="fadeIn(this)">
+    
+    <p><i>Hover over images to see the fade effect</i></p>
+
+    <script>
+        // 4) Fade out gradually - opacity decreases to 0.3
+        function fadeOut(element) {
+            clearInterval(element.fadeInterval);
+            var opacity = parseFloat(element.style.opacity) || 1;
+            
+            element.fadeInterval = setInterval(function() {
+                if (opacity > 0.3) {
+                    opacity -= 0.05;
+                    element.style.opacity = opacity;
+                } else {
+                    element.style.opacity = 0.3;
+                    clearInterval(element.fadeInterval);
+                }
+            }, 30);
+        }
+
+        // 4) Fade in gradually - opacity increases to 1
+        function fadeIn(element) {
+            clearInterval(element.fadeInterval);
+            var opacity = parseFloat(element.style.opacity) || 0.3;
+            
+            element.fadeInterval = setInterval(function() {
+                if (opacity < 1) {
+                    opacity += 0.05;
+                    element.style.opacity = opacity;
+                } else {
+                    element.style.opacity = 1;
+                    clearInterval(element.fadeInterval);
+                }
+            }, 30);
+        }
+    </script>
+</body>
+</html>

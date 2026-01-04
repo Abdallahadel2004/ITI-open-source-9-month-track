@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdallah Adel - Professional Landing Pages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            width: 1700px;
+            height: 960px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #0a0a0f;
+            position: relative;
+        }
+
+        /* Animated Gradient Background */
+        .bg-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(120, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(0, 200, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(255, 0, 128, 0.1) 0%, transparent 50%);
+        }
+
+        /* Grid Pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Floating Shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            top: -100px;
+            right: 100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            bottom: 50px;
+            left: -50px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            top: 50%;
+            right: 30%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .logo-text {
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c3aed, #2563eb);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.8rem 1.8rem;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            z-index: 10;
+            max-width: 750px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50px;
+            color: #a78bfa;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .main-title .gradient-text {
+            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .name-line {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #7c3aed, #2563eb);
+            border-radius: 2px;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2rem;
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-number span {
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Right Side - Preview Cards */
+        .preview-section {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .preview-cards {
+            position: relative;
+            width: 500px;
+            height: 600px;
+        }
+
+        .preview-card {
+            position: absolute;
+            width: 380px;
+            height: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            transition: all 0.5s ease;
+        }
+
+        .preview-card-1 {
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 3;
+        }
+
+        .preview-card-2 {
+            top: 120px;
+            right: 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            z-index: 2;
+        }
+
+        .preview-card-3 {
+            top: 240px;
+            right: 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            z-index: 1;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            z-index: 10;
+        }
+
+        .card-content {
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .card-dot-1 { background: #ff5f57; }
+        .card-dot-2 { background: #ffbd2e; }
+        .card-dot-3 { background: #28c840; }
+
+        .card-title {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .card-mockup {
+            flex: 1;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mockup-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Features Bar */
+        .features-bar {
+            position: absolute;
+            bottom: 3rem;
+            left: 5%;
+            right: 5%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+            padding: 1.5rem 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(37, 99, 235, 0.2));
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .feature-text h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-text p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* Glow Effects */
+        .glow-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #7c3aed, #2563eb, transparent);
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="glow-line"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">AA</div>
+            <span class="logo-text">Abdallah Adel</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <a href="#" class="nav-cta">Get Started</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Available for new projects
+        </div>
+        
+        <h1 class="main-title">
+            Build <span class="gradient-text">Landing Pages</span><br>
+            That Convert
+        </h1>
+        
+        <div class="name-line">
+            <div class="line"></div>
+            <span class="name">ABDALLAH ADEL</span>
+        </div>
+        
+        <p class="subtitle">
+            I create stunning, high-performance landing pages using modern web technologies. Let's transform your vision into a digital experience that drives results.
+        </p>
+        
+        <div class="cta-group">
+            <a href="#" class="cta-primary">
+                Start Your Project
+                <span>→</span>
+            </a>
+            <a href="#" class="cta-secondary">
+                View My Work
+            </a>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number"><span>50+</span></div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span>100%</span></div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><span>3+</span></div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preview Cards -->
+    <div class="preview-section">
+        <div class="preview-cards">
+            <div class="preview-card preview-card-1">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-dot card-dot-1"></div>
+                        <div class="card-dot card-dot-2"></div>
+                        <div class="card-dot card-dot-3"></div>
+                    </div>
+                    <h3 class="card-title">Modern Design</h3>
+                    <p class="card-text">Clean, responsive layouts that look great on any device</p>
+                    <div class="card-mockup">
+                        <span class="mockup-text">Your Landing Page</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-card preview-card-2">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-dot card-dot-1"></div>
+                        <div class="card-dot card-dot-2"></div>
+                        <div class="card-dot card-dot-3"></div>
+                    </div>
+                    <h3 class="card-title">Fast Performance</h3>
+                    <p class="card-text">Optimized for speed and search engines</p>
+                    <div class="card-mockup">
+                        <span class="mockup-text">Lightning Fast</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-card preview-card-3">
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="card-dot card-dot-1"></div>
+                        <div class="card-dot card-dot-2"></div>
+                        <div class="card-dot card-dot-3"></div>
+                    </div>
+                    <h3 class="card-title">Conversion Focused</h3>
+                    <p class="card-text">Strategic design that turns visitors into customers</p>
+                    <div class="card-mockup">
+                        <span class="mockup-text">Results Driven</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Bar -->
+    <div class="features-bar">
+        <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">
+                <h4>Lightning Fast</h4>
+                <p>Optimized performance</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">📱</div>
+            <div class="feature-text">
+                <h4>Responsive</h4>
+                <p>All devices supported</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🎨</div>
+            <div class="feature-text">
+                <h4>Modern UI</h4>
+                <p>Beautiful designs</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-text">
+                <h4>SEO Ready</h4>
+                <p>Search optimized</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">💻</div>
+            <div class="feature-text">
+                <h4>Clean Code</h4>
+                <p>HTML, CSS, JS</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

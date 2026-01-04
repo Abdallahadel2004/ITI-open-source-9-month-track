@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+</head>
+<body>
+    <!-- 1.a) Thank you message -->
+    <h1>Thank you, <span id="userName">Guest</span> for registering in our website.</h1>
+    <br>
+    <a href="registration.html">Back to Registration</a>
+
+    <script>
+        // 1.a) Display the full name
+        var fullName = sessionStorage.getItem("fullName");
+        if (fullName) {
+            document.getElementById("userName").textContent = fullName;
+        }
+    </script>
+</body>
+</html>

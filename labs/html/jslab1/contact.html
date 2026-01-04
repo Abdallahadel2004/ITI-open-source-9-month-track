@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+</style>
+</head>
+<body>
+<!---  /*8-	On contact page prompt user to enter his name, make sure that name is string, and let the user enter his birth year and make sure that it is a number, and it is less than 2010, and then calculate his age. For each prompt if user input valid show him next prompt, if not valid show him the same prompt again until user enters it correctly (use loops). And after validating user input, write all user input on the page in that format:
+Name: ahmed
+Birth year: 1981
+Age: 30-->    
+          <script>
+            "use strict";
+            while(true){
+                var name =prompt("enter your name");
+                if(typeof name === "string"){
+                    break;
+                }
+            }
+            
+            while(true){
+                var birthyear = parseInt(prompt("enter your birth year"));
+                if(!isNaN(birthyear) && birthyear < 2010){
+                    break;
+                }
+                else{
+                    alert("Invalid birth year");
+                }
+            }
+            var age = 2025 - birthyear;
+            document.write("Name: " + name + "<br><br>");
+            document.write("Birth year: " + birthyear + "<br><br>");
+            document.write("Age: " + age + "<br><br>");
+         </script>
+</body>
+</html>
+

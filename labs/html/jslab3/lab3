@@ -1,0 +1,12 @@
+1-	Create a new page that has a textbox, and alert the code of key pressed on a textbox, and which mouse button clicked on it.
+2-	On the same page, Make a button (Start clock), that showing alert saying “Clock Started” and displays clock with current time in local format (time only without date) in a div updated every second.
+a.	Handle the onclick event of the (start clock) button using JavaScript (Not in the input tag).
+b.	Stop the clock when user clicks (alt + w) letter, and show alert saying “Clock stopped”.
+
+4-	Create a login form that redirect to another page when user submit the form, and put in this form textbox (user name) and password field (password) [textboxes must have name attribute] and button (login). User name text has default text “Enter your user name here”, when user clicks login he will be redirected to another page (the page given in the form action), use get method and on the other page get the user name (from the browser URL) and write on the page welcome + User Name in bold and big font letters.
+
+5-	Make a link that on its onClick event opens new advertising window after 3 seconds, and write long paragraphs on it. Also, make another link that closes this page. (Note that the browser may block the opening of the new window; make sure that you allow this page to open popups in your browser). 
+
+6-	On registration form you make I Day.2, make a check box and label next to it “I agree to Terms and conditions” (Use label for this text), and make the label as a link that when clicked opens new page (html Page that you should create and put it in the same folder with the assignment) that contains long text and to be self-scrolling vertically (scrolls vertically automatically every half second).
+
+7-	On the same registration page, make the textbox of first name that accepts alphabetic characters only and don't accept numbers to be written on it (check for key code in keydown event, and use preventDefault).

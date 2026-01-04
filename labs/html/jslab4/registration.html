@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        /* 1.f) Background color for valid/invalid */
+        input:invalid {
+            background-color: gray;
+        }
+        
+        input:valid {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    
+    <!-- 2.h) Error message for form submission -->
+    <div id="errorSummary" style="color: red; display: none;">Plz correct the validation errors first.</div>
+    
+    <!-- 1) Registration Form -->
+    <form id="registrationForm" onsubmit="return handleSubmit(event)">
+        
+        <!-- 1.a, 1.b, 1.c, 1.d) Full Name -->
+        <div>
+            <label for="fullName">Full Name</label><br>
+            <input type="text" id="fullName" name="fullName" 
+                   placeholder="Enter your Name:" 
+                   required
+                   onfocus="handleNameFocus(this)"
+                   onblur="handleNameBlur(this)">
+            <!-- 2) Valid/Invalid images -->
+            <img src="Resources for Assignments/Valid & Not Valid Images/valid.png" id="nameValid" style="display:none; width:20px;">
+            <img src="Resources for Assignments/Valid & Not Valid Images/notvalid.png" id="nameInvalid" style="display:none; width:20px;">
+            <span id="nameError" style="color: red; display: none;">invalid name</span>
+        </div>
+        <br>
+
+        <!-- 1.a, 1.g) Email -->
+        <div>
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <br>
+
+        <!-- 1.a) City -->
+        <div>
+            <label for="city">City</label><br>
+            <select id="city" name="city">
+                <option value="">Select a city</option>
+                <option value="Cairo">Cairo</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Giza">Giza</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Riyadh">Riyadh</option>
+            </select>
+        </div>
+        <br>
+
+        <!-- 1.a) Password -->
+        <div>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password">
+        </div>
+        <br>
+
+        <!-- 1.a, 1.e) Repeat Password -->
+        <div>
+            <label for="repeatPassword">Repeat Password</label><br>
+            <input type="password" id="repeatPassword" name="repeatPassword" onblur="validatePassword(this)">
+            <!-- 2) Valid/Invalid images -->
+            <img src="Resources for Assignments/Valid & Not Valid Images/valid.png" id="passValid" style="display:none; width:20px;">
+            <img src="Resources for Assignments/Valid & Not Valid Images/notvalid.png" id="passInvalid" style="display:none; width:20px;">
+            <span id="passwordError" style="color: red; display: none;">password and repeat password should be the same</span>
+        </div>
+        <br>
+
+        <!-- 1.a) Terms checkbox -->
+        <div>
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I accept the terms and conditions</label>
+        </div>
+        <br>
+
+        <!-- 1.a) Register button -->
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+
+    <script>
+        // 1.c) Handle focus - show blue border
+        function handleNameFocus(element) {
+            element.style.border = "solid 1px blue";
+        }
+
+        // 1.d) Handle blur - validate name
+        function handleNameBlur(element) {
+            element.style.border = "";
+            var fullName = element.value.trim();
+            var nameError = document.getElementById("nameError");
+            var nameValid = document.getElementById("nameValid");
+            var nameInvalid = document.getElementById("nameInvalid");
+            
+            if (fullName === "" || fullName.length <= 3) {
+                // 1.f) Invalid - gray background
+                element.style.backgroundColor = "gray";
+                nameError.style.display = "inline";
+                nameValid.style.display = "none";
+                nameInvalid.style.display = "inline";
+                element.focus();
+                element.select();
+            } else {
+                // 1.f) Valid - white background
+                element.style.backgroundColor = "white";
+                nameError.style.display = "none";
+                nameValid.style.display = "inline";
+                nameInvalid.style.display = "none";
+            }
+        }
+
+        // 1.e) Validate password
+        function validatePassword(element) {
+            var password = document.getElementById("password").value;
+            var repeatPassword = element.value;
+            var passwordError = document.getElementById("passwordError");
+            var passValid = document.getElementById("passValid");
+            var passInvalid = document.getElementById("passInvalid");
+            
+            if (password === "" || repeatPassword === "" || password !== repeatPassword) {
+                // 1.f) Invalid - gray background
+                element.style.backgroundColor = "gray";
+                document.getElementById("password").style.backgroundColor = "gray";
+                passwordError.style.display = "inline";
+                passValid.style.display = "none";
+                passInvalid.style.display = "inline";
+            } else {
+                // 1.f) Valid - white background
+                element.style.backgroundColor = "white";
+                document.getElementById("password").style.backgroundColor = "white";
+                passwordError.style.display = "none";
+                passValid.style.display = "inline";
+                passInvalid.style.display = "none";
+            }
+        }
+
+        // 2.h) Handle form submit
+        function handleSubmit(event) {
+            var fullName = document.getElementById("fullName").value.trim();
+            var password = document.getElementById("password").value;
+            var repeatPassword = document.getElementById("repeatPassword").value;
+            var errorSummary = document.getElementById("errorSummary");
+            
+            var isNameValid = fullName !== "" && fullName.length > 3;
+            var isPasswordValid = password !== "" && repeatPassword !== "" && password === repeatPassword;
+            
+            if (!isNameValid || !isPasswordValid) {
+                event.preventDefault();
+                errorSummary.style.display = "block";
+                return false;
+            } else {
+                errorSummary.style.display = "none";
+                sessionStorage.setItem("fullName", fullName);
+                window.location.href = "thankyou.html";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

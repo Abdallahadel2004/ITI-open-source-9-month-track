@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1761762163 source:c:\users\abdal\onedrive\documents\desktop\cpp\c++ course\main.cpp
+	<iostream>
+
+1761807315 source:c:\users\abdal\onedrive\documents\desktop\cpp\c++ course\task2.cpp
+	<iostream>
+	<cstdarg>
+	<cmath>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JS Lab</title>
+        <script src="jsfunclab1.js"></script>
+    </head>
+    <body>
+        <h1>JS Lab</h1>
+        <script>
+            alert("Welcome to my site");
+            var name =prompt("enter your name");
+            alert("Hello " + name);
+        </script>
+        <button onclick="var num1=parseInt(prompt('enter number 1')); var num2=parseInt(prompt('enter number 2')); console.log('the sum is ' + add(num1,num2));">Print</button>
+<!--- question 7-->
+        <button onclick="var math=prompt('enter math expression'); console.log('the result is ' + math_expression(math));">
+            Print math expression
+        </button>
+        <br>
+        <a href="contact.html" target="_blank">contact</a>
+            <script>
+//10-	Try lecture example on: Hoisting, let, const.
+            var x = 10;
+            console.log(x);  //10 (hosting)
+            let y = 20;
+            console.log(y);  //20 (not hosting)
+            const z = 30;
+            console.log(z);  //30 (not hosting)
+            </script>
+
+    </body>
+</html>
+
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <!--1In the login form assignment in Day.6 lab, use local storage to save user name and password in the prev. assignment, when user press login button, and retrieve them on page load and write them to the textboxes.-->
+    <!--2-->
+    <form onsubmit="login()" >
+    <input type="text" name="username" id="username">
+    <input type="password" name="password" id="password">
+    <button type="submit" onclick="login()">Login</button>
+    <input type="checkbox" id="rememberme" name="rememberme">
+    <label for="rememberme">Remember me</label>
+</form>
+    <script>
+        // Retrieve saved credentials on page load (only if "Remember me" was checked)
+        window.onload = function() {
+            if (localStorage.getItem("rememberme") === "true") {
+                var savedUsername = localStorage.getItem("username");
+                var savedPassword = localStorage.getItem("password");
+                
+                if (savedUsername) {
+                    document.getElementById("username").value = savedUsername;
+                }
+                if (savedPassword) {
+                    document.getElementById("password").value = savedPassword;
+                }
+
+                document.getElementById("rememberme").checked = true;
+            }
+        };
+
+        // Save credentials when login button is clicked
+        function login() {
+            if(document.getElementById("rememberme").checked){
+
+                localStorage.setItem("username", document.getElementById("username").value);
+                localStorage.setItem("password", document.getElementById("password").value);
+                localStorage.setItem("rememberme", "true");
+            }
+            else{
+                localStorage.removeItem("username");
+                localStorage.removeItem("password");
+                localStorage.removeItem("rememberme");
+            }
+        }
+        //1a. Can you use session storage in the previous assignment 1? Why?
+        //no because seesion storage is not available for the next session and it is deleted when the browser is closed
+
+        //1b. What’s the difference between local storage and session storage?
+        //local storage is available for the next session and it is not deleted when the browser is closed
+        //session storage is only available for the current session and it is deleted when the browser is closed
+
+        //1c. can you access local storage and session storage in another page than the page that created it (on the same site)
+        //yes ,you can access local storage but in session storage you can't access it in another page than the page that created it
+
+
+        //6-	In local storage Assignment (No.1) use cookies instead of local storage.
+        document.cookie = "username=" + document.getElementById("username").value + "; expires=Fri, 02 Jan 2026 12:00:00 UTC; path=/";
+        document.cookie = "password=" + document.getElementById("password").value + "; expires=Fri, 02 Jan 2026 12:00:00 UTC; path=/";
+    </script>
+   <!--3-->
+   <script>
+    var student={
+        id:1,
+        name:"abdallah",
+        age:22,
+        address:"minya",
+        skills:["html","css","javascript"],
+        isLeader:true
+    };
+    var student2={
+        id:2,
+        name:"messi",
+        age:30,
+        address:"barcelona",
+        skills:["html","css","javascript"],
+        isLeader:false
+    };
+    var student3={
+        id:3,
+        name:"ronaldo",
+        age:35,
+        address:null,
+        skills:["html","css","javascript"],
+        isLeader:true
+    };
+    var students=[student,student2,student3];
+    for(var s of students){
+        console.log(s);
+    }
+    //4a. Can JSON hold null and Boolean values?
+    //yes, JSON can hold null and Boolean values
+
+    //4b. What are the differences between XML and JSON?
+    //the main difference is that XML is a markup language and JSON is a data format
+    //xml can not hold null and Boolean values but json can
+   </script>
+
+<!--5-->
+<br><br>
+<h3>5a. Get Student by ID</h3>
+<input type="number" id="productId" placeholder="Enter Product ID" min="1">
+<button onclick="getProductById()">Display</button>
+<div id="productByIdResult"></div>
+
+<br><br>
+<h3>Select Student from Dropdown</h3>
+<select id="productsDropdown" onchange="displaySelectedProduct()">
+    <option value="">-- Select a Product --</option>
+</select>
+<div id="selectedProductResult"></div>
+
+<script>
+    // 5a. Get student by ID using XMLHttpRequest (AJAX pattern)
+    function getProductById() {
+        var productId = document.getElementById("productId").value;
+        if (!productId) {
+            alert("Please enter a Product ID");
+            return;
+        }
+        
+        // Create XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+        
+        // Open connection (using fakestoreapi.com)
+        xhr.open("GET", "https://fakestoreapi.com/products/" + productId, true);
+        
+        // Set up callback for when request completes
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {  
+                if (xhr.status == 200) {  
+                    var product = JSON.parse(xhr.responseText);
+                    
+                    // Display API product data
+                    document.getElementById("productByIdResult").innerHTML = 
+                        "<p><strong>Title:</strong> " + product.title + "</p>" +
+                        "<p><strong>Price:</strong> $" + product.price + "</p>" +
+                        "<img src='" + product.image + "' width='100'>";
+                } else {
+                    document.getElementById("productByIdResult").innerHTML = "<p>Product not found in API!</p>";
+                }
+            }
+        };
+        
+        // Send the request
+        xhr.send();
+    }
+
+    // 5b. Load all products into dropdown using XMLHttpRequest
+    function loadAllProducts() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://fakestoreapi.com/products", true);
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var products = JSON.parse(xhr.responseText);
+                var dropdown = document.getElementById("productsDropdown");
+                
+                // Loop through API products and add to dropdown
+                for (var i = 0; i < products.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = products[i].id;
+                    option.text = products[i].title;
+                    dropdown.appendChild(option);
+                }
+                
+            }
+        };
+        
+        xhr.send();
+    }
+
+    // 5c. Display selected product when dropdown changes
+    function displaySelectedProduct() {
+        var selectedValue = document.getElementById("productsDropdown").value;
+        if (!selectedValue) {
+            document.getElementById("selectedProductResult").innerHTML = "";
+            return;
+        }
+        
+        // Fetch from API using XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://fakestoreapi.com/products/" + selectedValue, true);
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var product = JSON.parse(xhr.responseText);
+                
+                document.getElementById("selectedProductResult").innerHTML = 
+                    "<p><strong>ID:</strong> " + product.id + "</p>" +
+                    "<p><strong>Title:</strong> " + product.title + "</p>" +
+                    "<p><strong>Price:</strong> $" + product.price + "</p>" +
+                    "<p><strong>Category:</strong> " + product.category + "</p>" +
+                    "<img src='" + product.image + "' width='100'>";
+            }
+        };
+        
+        xhr.send();
+    }
+
+    // Load products when page loads
+    loadAllProducts();
+</script>
+
+
+</body>
+</html>
