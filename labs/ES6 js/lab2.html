@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="alltips()">show all tips</button>
+    <button onclick="interval()">start interval</button>
+    <script>
+//1 alert the sum of 2 nums and pass the sum as an argumment to alert dunction (slef-invoking function)
+        (function(a,b){
+            alert(a+b);
+        })(10,20);
+//2)try arrow function with array.filter() function to return odd numbers from array
+
+var number=[1,2,3,4,5,6,7,8,9];
+var oddnumbers=number.filter((num)=>num%2 !== 0);
+console.log(oddnumbers);
+
+// use arrow with for eeach to print the even numbers
+number.forEach((num)=>{
+    if(num%2 === 0){
+        console.log(num);
+    }
+});
+//use arrow with map to print the square of each element 
+var square=number.map((num)=>num*num);
+console.log(square);
+
+//d. "An arrow function does not create its own this context, unlike the normal literal function." – Explain with demo
+var thiscontext=this; 
+console.log(thiscontext);
+
+var normalfunction=function(){ //in normal function 
+    console.log(this); 
+};
+
+normalfunction();
+var arrowfunction=()=>{ // in arrow function this is created by the outer scope
+    console.log(this); 
+};
+arrowfunction();
+
+// 3) try spread operator with array of your implementation
+var arr=[1,2,3,4,5];
+var arr2=[...arr,1,2,3];
+console.log(arr2);
+
+//4) create a student literal object that contains: name, University, faculty, and final grade. print student data in the console using template literals in this format: 
+var student={
+    name:"abdallah",
+    age:22,
+    faculty:"computer science",
+    university:"NUB",
+    finalgrade:90
+};
+console.log(`${student.name}:is a student in faculty of ${student.faculty} in university ${student.university} and his final grade is ${student.finalgrade}`);
+
+//5)make a set that holds student names
+var students= new Set(["abdallah,messi,salah,mokhtar"])
+ // a) try to add repeated names will the set accept it? NO 
+ students.add("abdallah"); 
+ console.log(students); 
+   //b) print the set values using spread operator and using for…of
+   console.log(...students);
+   for(var student of students){
+    console.log(student);
+ }
+
+
+ //6 crate a genarator that has an array of 10 tips 
+ var tips=["hello","world","javascript","html","css","bootstrap","react","nodejs","mongodb","express"];
+ function* TipOfTheDay(){
+    for(var tip of tips){
+        yield tip;
+    }
+ }
+ var tipgenerator=TipOfTheDay();
+ console.log(tipgenerator.next().value);
+ console.log(tipgenerator.next().value);
+ console.log(tipgenerator.next().value);
+ console.log(tipgenerator.next().value);
+ console.log(tipgenerator.next().value);
+ 
+ function alltips(){
+    for(var tip of tipgenerator){
+        document.write(tip + "<br>");
+    }
+    }
+// handle this to stop the interval if the tip is undefined
+ function interval(){
+   var interval = setInterval(()=>{
+       var result = tipgenerator.next();
+       if(result.done){
+           clearInterval(interval);
+       }
+       else{   
+           document.write(result.value + "<br>");
+       }
+   },3000);
+ }
+    </script>
+</body>
+</html>
+
+
+
+
+
