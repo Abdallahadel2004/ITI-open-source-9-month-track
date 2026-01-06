@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<select id="dropdown">
+    <option value="">Select a user</option>
+</select>
+<button id="button" disabled >show image</button>
+    <script>
+        //1)
+        function getUsers(){
+            fetch("https://dummyjson.com/users")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                for(let user of data.users){
+                    let option = document.createElement("option");
+                    option.value = user.id;
+                    option.textContent = user.firstName + " " + user.lastName;
+                    dropdown.appendChild(option);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        getUsers();
+       //b)
+       async function showImage(){
+        await fetch(`https://dummyjson.com/users/${dropdown.value}`)
+         .then(async response => await response.json())
+        .then(data => {
+            console.log(data.image);
+            document.getElementById("button").disabled = true;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        document.getElementById("button").disabled = false;
+    }
+    showImage();
+
+    //2
+    //1
+   function addNewPost(){
+    fetch("https://dummyjson.com/posts/add",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: "foo",
+            body: "bar",
+            userId: 1
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        //check post is added successfully return this object with id, title, body, userId
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    }
+    addNewPost();
+
+    
+    
+    </script>
+</body>
+</html>

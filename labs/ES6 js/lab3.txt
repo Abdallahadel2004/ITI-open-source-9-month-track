@@ -1,0 +1,28 @@
+Day 2 Lab Assignments
+1.	Create a function that using fetch and make an Ajax call to this URL (https://jsonplaceholder.typicode.com/users), and after getting the users, display them in a dropdownlist (<select> item)in your page.
+a.	Make button besides the list (Show image), and make it disabled.
+b.	After the user are retrieved from the server and filled in the drop-down list, enable the button, and when clicked, it should display the user details.
+
+
+2.	Use Async, await with the previous assignment.
+1.	Use fetch() to add new post, using this POST API: https://jsonplaceholder.typicode.com/posts
+Knowing that:
+a.	You should use POST method.
+b.	This API takes an object of the new post as the following: 
+{
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+   }
+c.	If the post is added successfully the API should return this object:
+{
+  id: 101,
+  title: 'foo',
+  body: 'bar',
+  userId: 1
+}
+3.	Use promises to implement a web page:
+a.	When opens it shows welcome message after 3 seconds.
+b.	After finishing the previous action, display the user image.
+c.	And then, display a thanks message after 3 seconds.
+d.	And finally, redirects to another page.

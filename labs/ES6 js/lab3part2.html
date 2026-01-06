@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab3part2</title>
+</head>
+<body>
+    <script>
+ //3
+ new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("welcome message");
+    }, 3000);
+ }).then(message => {
+    alert(message);
+ })
+ new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("user image");
+    }, 3000);
+ }).then(image => {
+    alert(image);
+ })
+ 
+ new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("thanks message");
+    }, 6000);
+ }).then(message => {
+    alert(message);
+ })
+ 
+ new Promise((resolve, reject) => {
+    setTimeout(() => {
+        window.location.href = "https://maharatech.gov.eg/";
+    }, 7000);
+ })
+    </script>
+</body>
+</html>
