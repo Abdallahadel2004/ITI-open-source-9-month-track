@@ -43,7 +43,7 @@ class ExceptionCaller {
         try {
             methods.checkAge(15);
         } catch (expceptionclass e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             System.out.println("Age check completed\n");
         }
@@ -52,7 +52,7 @@ class ExceptionCaller {
         try {
             methods.withdraw(-100);
         } catch (expceptionclass e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             System.out.println("Withdrawal completed\n");
         }
@@ -61,7 +61,7 @@ class ExceptionCaller {
         try {
             methods.validatePassword("abc");
         } catch (expceptionclass e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             System.out.println("Password check completed");
         }
