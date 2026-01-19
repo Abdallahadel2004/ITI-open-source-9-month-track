@@ -23,7 +23,7 @@ public class TextBannerApplication extends JFrame implements Runnable {
         int textWidth = fm.stringWidth(bannerText);
         bannerLabel.setSize(textWidth, 50);
         
-        xPosition = this.getWidth();
+        xPosition = -textWidth; // start from left (off-screen)
         bannerLabel.setLocation(xPosition, 50);
         this.add(bannerLabel);
         
@@ -37,10 +37,10 @@ public class TextBannerApplication extends JFrame implements Runnable {
         int textWidth = fm.stringWidth(bannerText);
         
         while (true) {
-            xPosition -= scrollSpeed;//decrease the x position by the scroll speed
+            xPosition += scrollSpeed; // increase the x position (move right)
             
-            if (xPosition < -textWidth) {//if the x position is less than the text width, set the x position to the width of the frame
-                xPosition = this.getWidth();
+            if (xPosition > this.getWidth()) { // if text goes off right side, reset to left
+                xPosition = -textWidth;
             }
             bannerLabel.setLocation(xPosition, 50);//set the location of the banner label to the x position and 50
             try {
