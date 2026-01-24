@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 3 - SVG and Canvas</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        canvas, svg {
+            border: 2px solid black;
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- exercise 1: SVG Face -->
+    <svg width="200" height="200">
+        <circle cx="100" cy="100" r="80" fill="yellow" stroke="black"
+            onmouseover="this.style.fill='orange'"
+            onmouseout="this.style.fill='yellow'" />
+        <circle cx="65" cy="80" r="12" fill="white" stroke="black"
+            onmouseover="this.style.fill='lightblue'"
+            onmouseout="this.style.fill='white'" />
+        <circle cx="135" cy="80" r="12" fill="white" stroke="black"
+            onmouseover="this.style.fill='lightblue'"
+            onmouseout="this.style.fill='white'" />
+        <ellipse cx="100" cy="110" rx="8" ry="12" fill="orange"
+            onmouseover="this.style.fill='red'"
+            onmouseout="this.style.fill='orange'" />
+        <ellipse cx="100" cy="145" rx="25" ry="10" fill="red"
+            onmouseover="this.style.fill='pink'"
+            onmouseout="this.style.fill='red'" />
+    </svg>
+
+    <!-- exercise 2: Canvas Face -->
+    <canvas id="faceCanvas" width="200" height="200"></canvas>
+
+    <!-- exercise 3: Circle with Name -->
+    <canvas id="nameCanvas" width="300" height="200"></canvas>
+
+    <!-- exercise 4: Drawing -->
+    <canvas id="drawCanvas" width="500" height="200"></canvas>
+
+    <script>
+        // exercise 2: draw sad/happy face
+        var canvas1 = document.getElementById('faceCanvas');
+        var ctx1 = canvas1.getContext('2d');
+
+        function drawFace(happy, width) {
+            ctx1.clearRect(0, 0, 200, 200);
+            
+            // face
+            ctx1.beginPath();
+            ctx1.ellipse(100, 100, width, 60, 0, 0, Math.PI * 2);
+            ctx1.fillStyle = 'yellow';
+            ctx1.fill();
+            ctx1.stroke();
+            
+            // eyes
+            ctx1.beginPath();
+            ctx1.arc(75, 85, 8, 0, Math.PI * 2);
+            ctx1.arc(125, 85, 8, 0, Math.PI * 2);
+            ctx1.fillStyle = 'black';
+            ctx1.fill();
+            
+            // mouth
+            ctx1.beginPath();
+            if (happy) {
+                ctx1.arc(100, 115, 30, 0, Math.PI);
+            } else {
+                ctx1.arc(100, 140, 25, Math.PI, 0);
+            }
+            ctx1.stroke();
+        }
+        
+        drawFace(false, 60); 
+        
+        canvas1.onmousedown = function() {
+            drawFace(true, 80); 
+        };
+        canvas1.onmouseup = function() {
+            drawFace(false, 60); 
+        };
+
+
+        // exercise 3: circle and text
+        var canvas2 = document.getElementById('nameCanvas');
+        var ctx2 = canvas2.getContext('2d');
+        
+        ctx2.beginPath();
+        ctx2.arc(150, 100, 80, 0, Math.PI * 2);
+        ctx2.fillStyle = 'rgba(0, 100, 255, 0.3)';
+        ctx2.fill();
+        ctx2.stroke();
+        
+        var gradient = ctx2.createLinearGradient(70, 0, 230, 0);
+        gradient.addColorStop(0, 'red');
+        gradient.addColorStop(0.5, 'green');
+        gradient.addColorStop(1, 'blue');
+        ctx2.font = 'bold 32px Arial';
+        ctx2.textAlign = 'center';
+        ctx2.fillStyle = gradient;
+        ctx2.fillText('Abdallah', 150, 105);
+
+
+        // exercise 4: draw and erase
+        var canvas3 = document.getElementById('drawCanvas');
+        var ctx3 = canvas3.getContext('2d');
+        var drawing = false;
+        var erasing = false;
+        var lastX, lastY;
+
+        ctx3.fillStyle = 'white';
+        ctx3.fillRect(0, 0, 500, 200);
+
+        canvas3.oncontextmenu = function(e) { e.preventDefault(); };
+
+        canvas3.onmousedown = function(e) {
+            var rect = canvas3.getBoundingClientRect();
+            lastX = e.clientX - rect.left;
+            lastY = e.clientY - rect.top;
+            if (e.button == 0) drawing = true;
+            if (e.button == 2) erasing = true;
+        };
+
+        canvas3.onmousemove = function(e) {
+            if (!drawing && !erasing) return;
+            var rect = canvas3.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            ctx3.beginPath();
+            ctx3.moveTo(lastX, lastY);
+            ctx3.lineTo(x, y);
+            if (drawing) {
+                ctx3.strokeStyle = 'blue';
+                ctx3.lineWidth = 4;
+            } else {
+                ctx3.strokeStyle = 'white';
+                ctx3.lineWidth = 20;
+            }
+            ctx3.stroke();
+            lastX = x;
+            lastY = y;
+        };
+
+        canvas3.onmouseup = function() {
+            drawing = false;
+            erasing = false;
+        };
+    </script>
+
+</body>
+</html>
