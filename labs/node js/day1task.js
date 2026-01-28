@@ -19,17 +19,17 @@ const server = http.createServer((req, res) => {
             const newpost=JSON.parse(chunck);
             const isFounded=posts.find(post=>post.id==newpost.id);
             if(newpost.title===""||newpost.content==="" || newpost.id===undefined){
-                res.end("missing required fields");
                 res.statusCode=400;
+                res.end("missing required fields");
             }
             else if(isFounded){
-                res.end("the post already exists");
                 res.statusCode=409;
+                res.end("the post already exists");
             }else{
                 newpost.createdAt = new Date().toISOString();
                 posts.push(newpost);
-                res.end("the post is created");
                 res.statusCode=201;
+                res.end("the post is created");
                 savechanges();
             }
         })
@@ -39,19 +39,19 @@ const server = http.createServer((req, res) => {
             const updatedpost=JSON.parse(chunck);
             const isfounded=posts.find(post=>post.id==updatedpost.id);
             if(updatedpost.title===""||updatedpost.content==="" || updatedpost.id===undefined){
-                res.end("missing required fields");
                 res.statusCode=400;
+                res.end("missing required fields");
             }
             else if(isfounded){
                 isfounded.title=updatedpost.title;
                 isfounded.content=updatedpost.content;
                 isfounded.updatedAt = new Date().toISOString();
-                res.end("the post is updated successfully");
                 res.statusCode=200;
+                res.end("the post is updated successfully");
                 savechanges();
             }else{
-                res.end("the post is not found");
                 res.statusCode=404;
+                res.end("the post is not found");
             }
         })
     }else if(req.url=="/posts"&& req.method=="DELETE"){
@@ -60,11 +60,11 @@ res.setHeader("content-type","application/json");
 const deletedpost=JSON.parse(chunck);
 const isfounded=posts.filter(post=>post.id!=deletedpost.id);
 if(isfounded.length===posts.length){
-    res.end("the post is not found");
     res.statusCode=404;
+    res.end("the post is not found");
 }else{
-    res.end("the post is deleted successfully");
     res.statusCode=204;
+    res.end("the post is deleted successfully");
     posts=isfounded;
     savechanges();
 }
@@ -75,11 +75,11 @@ if(isfounded.length===posts.length){
         const postid=req.url.split("/")[2];
         const post=posts.find(post=>post.id==postid);
         if(post){
-            res.end(JSON.stringify(post));
             res.statusCode=200;
+            res.end(JSON.stringify(post));
         }else{
-            res.end("the post is not found");  
             res.statusCode=404;
+            res.end("the post is not found");  
         }
     }
     
