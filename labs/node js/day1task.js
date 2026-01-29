@@ -63,7 +63,7 @@ if(isfounded.length===posts.length){
     res.statusCode=404;
     res.end("the post is not found");
 }else{
-    res.statusCode=204;
+    res.statusCode=200;
     res.end("the post is deleted successfully");
     posts=isfounded;
     savechanges();
