@@ -22,6 +22,15 @@ app.get("/home",(req,res)=>{
 app.get("/comments",(req,res)=>{
     res.json(comments);
 })
+app.get("/comments/:id",(req,res)=>{
+    const userid=req.params.id;
+    const user=comments.find(comment=>comment.id==userid);
+    if(user){
+        res.json(user);
+    }else{
+        res.status(404).send("comment not found");
+    }
+})
 
 app.post("/comments",(req,res)=>{
     req.body.id=comments.length+1;
