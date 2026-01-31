@@ -3,7 +3,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 const app=express();
-//middleware to parse the body of the request
 app.use(express.json());
 
 
