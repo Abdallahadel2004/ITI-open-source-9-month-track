@@ -1,46 +1,54 @@
 import { Post } from "../Database/Models/posts.model.js";
 
 const getPosts=async(req,res)=>{
-    const posts=await Post.find();
+    const posts=await Post.find({author:req.user._id});
     res.status(200).json({
         message:"List of posts",
         data:posts
     })
 }
+
+
 const createPosts=async(req,res)=>{
-    let newpost=await Post.insertMany(req.body);
+    let newpost=await Post.insertMany({...req.body,author:req.user._id});
     res.status(201).json({
         message:"Post created successfully",
         data:newpost
     })
 }
 const updatePosts=async(req,res)=>{
-    const postid=req.params.id;
-    const updatePosts=await Post.findByIdAndUpdate(postid,req.body,{new:true});
+    let updatedpost=await Post.findOneAndUpdate({
+        _id:req.params.id,
+        author:req.user._id
+    },req.body,{new:true});
     res.status(200).json({
         message:"Post updated successfully",
-        data:updatePosts
+        data:updatedpost
     })
-    if(!updatePosts){
+    if(!updatedpost){
         return res.status(404).json({
             message:"Post not found"
         })
     }
 }
+
 const deletePosts=async(req,res)=>{
-    const postid=req.params.id;
-    const deletedPosts=await Post.findByIdAndDelete(postid);
+    const deletepost=await Post.findOneAndDelete({
+        _id:req.params.id,
+        author:req.user._id
+    })
     res.status(200).json({
         message:"Post deleted successfully",
-        data:deletedPosts
+        data:deletepost
     })
-    if(!deletedPosts){
+    if(!deletepost){
         return res.status(404).json({
             message:"Post not found"
         })
     }
 }
-const getPostById=async(req,res)=>{
+
+/*const getPostById=async(req,res)=>{
     const postid=req.params.id;
     const post=await Post.findById(postid);
     res.status(200).json({
@@ -52,5 +60,6 @@ const getPostById=async(req,res)=>{
             message:"Post not found"
         })
     }
-}
-export {getPosts,createPosts,updatePosts,deletePosts,getPostById};
+}*/
+
+export {getPosts,createPosts,updatePosts,deletePosts};
