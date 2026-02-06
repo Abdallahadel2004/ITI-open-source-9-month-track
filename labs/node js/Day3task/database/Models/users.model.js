@@ -13,6 +13,10 @@ const userSchema=new Schema({
         type:String,
         required:true
     },
+    isConfirmed:{
+        type:Boolean,
+        default:false
+    },
     role:{
         type:String,
         required:true,
