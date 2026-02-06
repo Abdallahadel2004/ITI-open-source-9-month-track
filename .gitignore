@@ -2,4 +2,4 @@ package-lock.json
 package.json
 node_modules
 labs\node js\.package-lock.json
-labs\node js\Day3task\Email\email.js
+labs/node js/Day3task/Email/email.js
