@@ -1,0 +1,21 @@
+<h2>Temperature Converter</h2>
+
+<label>Celsius</label>
+<br />
+<input
+  type="number"
+  [value]="celsius"
+  (input)="onCelsiusChange($any($event.target).value)"
+  placeholder="Enter Celsius"
+/>
+
+<br /><br />
+
+<label>Fahrenheit</label>
+<br />
+<input
+  type="number"
+  [value]="fahrenheit"
+  (input)="onFahrenheitChange($any($event.target).value)"
+  placeholder="Enter Fahrenheit"
+/>

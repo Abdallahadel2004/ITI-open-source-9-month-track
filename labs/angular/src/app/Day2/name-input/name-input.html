@@ -1,0 +1,15 @@
+<input
+  type="text"
+  placeholder="Enter First Name"
+  [value]="firstName"
+  (input)="firstName = $any($event.target).value"
+/>
+
+<br />
+<br />
+
+<button (click)="reset()">Rest</button>
+
+<br />
+
+{{ firstName }}

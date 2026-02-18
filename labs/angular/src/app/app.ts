@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { TemperatureConverter } from './Day2/temperature-converter/temperature-converter';
+import { NameInput } from './Day2/name-input/name-input';
+import { ImageSlider } from './Day2/image-slider/image-slider';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [TemperatureConverter, NameInput, ImageSlider],
+  templateUrl: './app.html'
 })
-export class App {
-  protected readonly title = signal('my-app');
-}
+export class App {}
