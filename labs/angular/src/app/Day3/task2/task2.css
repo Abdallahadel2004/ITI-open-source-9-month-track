@@ -1,0 +1,39 @@
+h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  padding: 8px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-success { background: #4caf50; }
+.btn-error { background: #e05353; }
+.btn-warning { background: #e8b230; }
+.btn-info { background: #5b9bd5; }
+
+.notification {
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.success { background: #4caf50; }
+.error { background: #e05353; }
+.warning { background: #e8b230; }
+.info { background: #5b9bd5; }

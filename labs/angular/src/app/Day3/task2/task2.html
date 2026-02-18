@@ -1,0 +1,31 @@
+<h2>Notification Center</h2>
+
+<div class="buttons">
+  <button class="btn-success" (click)="selected=1">1</button>
+  <button class="btn-error" (click)="selected=2">2</button>
+  <button class="btn-warning" (click)="selected=3">3</button>
+  <button class="btn-info" (click)="selected=4">4</button>
+</div>
+
+@switch (selected) {
+  @case (1) {
+    <div class="notification success">
+      <strong>Success</strong> Profile updated successfully!
+    </div>
+  }
+  @case (2) {
+    <div class="notification error">
+      <strong>Error</strong> Failed to load user data!
+    </div>
+  }
+  @case (3) {
+    <div class="notification warning">
+      <strong>Warning</strong> Password is weak!
+    </div>
+  }
+  @case (4) {
+    <div class="notification info">
+      <strong>Info</strong> New updates are available!
+    </div>
+  }
+}

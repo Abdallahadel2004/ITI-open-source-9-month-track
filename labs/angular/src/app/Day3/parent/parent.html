@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <h1>Product Dashboard</h1>
+  @if (favoriteProduct) {
+    <p class="favorite-label">Favorite Product: {{ favoriteProduct.name }}</p>
+  }
+
+  <div class="content">
+    <div class="form-section">
+      <h2>Add Product</h2>
+
+      <label for="name">Name</label>
+      <input id="name" type="text" [(ngModel)]="newName" />
+
+      <label for="price">Price</label>
+      <input id="price" type="number" [(ngModel)]="newPrice" />
+
+      <label for="category">Category</label>
+      <input id="category" type="text" [(ngModel)]="newCategory" />
+
+      <button class="btn-add" (click)="addProduct()">Add</button>
+    </div>
+
+    <div class="display-section">
+      @for (product of products; track product.name) {
+        <app-child
+          [product]="product"
+          (favorite)="onFavorite($event)"
+          (delete)="onDelete($event)"
+        />
+      }
+    </div>
+  </div>
+</div>

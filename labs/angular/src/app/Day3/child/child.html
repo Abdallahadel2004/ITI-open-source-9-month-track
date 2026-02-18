@@ -1,0 +1,10 @@
+<div class="card">
+  <h3>{{ product.name }}</h3>
+  <p>Price: {{ product.price }}</p>
+  <p>Category: {{ product.category }}</p>
+  <div class="card-actions">
+    <button class="btn-favorite" (click)="onFavorite()">Favorite</button>
+    <button class="btn-delete" (click)="onDelete()">Delete</button>
+    
+  </div>
+</div>
