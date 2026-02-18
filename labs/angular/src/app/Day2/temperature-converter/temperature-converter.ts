@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 @Component({
   selector: 'app-temperature-converter',
-  standalone: true,
   imports: [FormsModule],
   templateUrl: './temperature-converter.html'
 })
