@@ -5,7 +5,7 @@
 <input
   type="number"
   [value]="celsius"
-  (input)="onCelsiusChange($any($event.target).value)"
+  (input)="onCelsius($any($event.target).value)"
   placeholder="Enter Celsius"
 />
 
@@ -16,6 +16,6 @@
 <input
   type="number"
   [value]="fahrenheit"
-  (input)="onFahrenheitChange($any($event.target).value)"
+  (input)="onFahrenheit($any($event.target).value)"
   placeholder="Enter Fahrenheit"
 />

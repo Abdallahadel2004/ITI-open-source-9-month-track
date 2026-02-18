@@ -9,7 +9,7 @@ export class TemperatureConverter {
   celsius :number | null = null;
   fahrenheit :number | null = null;
 
-  onCelsiusChange(value: string) {
+  onCelsius(value: string) {
     const c = parseFloat(value);
     if (!isNaN(c)) {
       this.celsius = c;
@@ -20,7 +20,7 @@ export class TemperatureConverter {
     }
   }
 
-  onFahrenheitChange(value: string) {
+  onFahrenheit(value: string) {
     const f = parseFloat(value);
     if (!isNaN(f)) {
         this.fahrenheit = f;
