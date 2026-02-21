@@ -1,0 +1,35 @@
+@if (favoriteProduct) {
+<p class="favorite-label">Favorite: {{ favoriteProduct.name }}</p>}
+
+<h2>Products ({{ products.length }})</h2>
+
+<div class="cards-grid">
+@for (product of products; track product.name; let i = $index) {
+<div class="card">
+    <h3>{{ product.name }}</h3>
+    <p>Price: {{ product.price | number }} EGP</p>
+    <p>Category: {{ product.category }}</p>
+
+    <div class="card-actions">
+        <button class="btn-delete" (click)="onDelete(product)">Delete</button>
+        <button class="btn-update" (click)="startEdit(i)">Update</button>
+        <button class="btn-fav" (click)="onFavorite(product)">Fav</button>
+    </div>
+
+    @if (editing && editIndex === i) {
+    <div class="edit-form">
+        <input [(ngModel)]="editName" placeholder="Name" />
+        <input [(ngModel)]="editPrice" type="number" placeholder="Price" />
+        <input [(ngModel)]="editCategory" placeholder="Category" />
+        <div class="edit-actions">
+            <button class="btn-save" (click)="saveEdit()">Save</button>
+            <button class="btn-cancel" (click)="cancelEdit()">Cancel</button>
+        </div>
+    </div>
+    }
+</div>
+}
+@empty {
+<p class="empty-state">No products yet. Use the form to add one!</p>
+}
+</div>
