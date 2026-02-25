@@ -1,0 +1,34 @@
+{
+    "books": [
+        {
+            "title": "game of thrones",
+            "author": "george martin",
+            "ISBN": "978-0062301250"
+        },
+        {
+            "preface": "this is the preface of the book",
+            "parts": [
+                {
+                    "title": "part 1",
+                    "chapters": [
+                        {
+                            "title": "chapter 1",
+                            "summary": "this is the summary of chapter 1",
+                            "sections": [
+                                {
+                                    "summary": "this is the summary of section 1"
+                                },
+                               { "sections" : [
+                                    {
+                                        "number": "1.1",
+                                        "paragraph": "the paragraph of section 1.1"
+                                    }
+                                ]
+                        }]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
