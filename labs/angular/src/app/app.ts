@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
-import { TemperatureConverter } from './Day2/temperature-converter/temperature-converter';
-import { NameInput } from './Day2/name-input/name-input';
-import { ImageSlider } from './Day2/image-slider/image-slider';
-import { Parent } from './Day3/parent/parent';
-import { Task2 } from './Day3/task2/task2';
-import { Child } from './Day3/child/child';
-import { ResponsiveForm } from './Day4/responsive-form/responsive-form';
+import { RouterModule, Router } from '@angular/router';
+import { Auth } from './Day5/services/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [TemperatureConverter, NameInput, ImageSlider, Parent, Task2, Child, ResponsiveForm],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './app.html'
 })
-export class App { }
+export class App {
+  constructor(public authService: Auth, private router: Router) { }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+  }
+}
