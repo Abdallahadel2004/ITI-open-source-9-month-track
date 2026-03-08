@@ -4,11 +4,9 @@ const { buildSchema } = require('graphql');
 const cors = require('cors');
 const crypto = require('crypto');
 
-// In-memory data arrays
 const authors = [];
 const books = [];
 
-// Schema Definition (TypeDefs)
 const schema = buildSchema(`
   type Author {
     id: ID!
@@ -37,9 +35,7 @@ const schema = buildSchema(`
   }
 `);
 
-// Resolvers
 const root = {
-  // Queries
   getAllBooks: () => {
     return books.map(book => {
       const author = authors.find(a => a.id === book.authorId);
@@ -57,7 +53,6 @@ const root = {
   getAuthorWithBooks: ({ id }) => {
     const author = authors.find(a => a.id === id);
     if (!author) return null;
-    // Construct the books relation
     const authorBooks = books.filter(b => b.authorId === id).map(book => ({
       ...book,
       author
@@ -65,7 +60,6 @@ const root = {
     return { ...author, books: authorBooks };
   },
 
-  // Mutations
   addAuthor: ({ name, nationality }) => {
     const newAuthor = {
       id: crypto.randomUUID(),
@@ -95,14 +89,12 @@ const root = {
 const app = express();
 app.use(cors());
 
-// Configure the GraphQL endpoint
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
-  graphiql: true, // Enable GraphiQL UI
+  graphiql: true,
 }));
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}/graphql`);
+app.listen(3000, () => {
+  console.log(`Server is running on http://localhost:3000/graphql`);
 });
