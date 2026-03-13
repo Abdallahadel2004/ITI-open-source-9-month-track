@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import Child from './Child.vue'
+import Child from './day1/Child.vue'
 
 // the data in the parent component
 const mainProduct = ref({
