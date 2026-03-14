@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { useCartStore } from '../stores/cartStore';
 
 const props = defineProps({
   product: {
@@ -8,13 +8,7 @@ const props = defineProps({
   }
 });
 
-onMounted(() => {
-  console.log("ProductCard mounted");
-});
-
-onUnmounted(() => {
-  console.log("ProductCard unmounted");
-});
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -24,13 +18,22 @@ onUnmounted(() => {
       <div v-if="product.badge" class="badge badge-secondary absolute top-4 right-4">{{ product.badge }}</div>
     </figure>
     <div class="card-body p-4">
-      <h2 class="card-title text-lg">{{ product.name }}</h2>
+      <h2 class="card-title text-lg">
+        <router-link :to="`/product/${product.id}`" class="hover:text-primary transition-colors">{{ product.name }}</router-link>
+      </h2>
       <div class="flex items-center gap-2 mt-2">
         <span class="text-xl font-bold text-primary">${{ product.price - (product.price * (product.discount / 100)) }}</span>
         <span v-if="product.discount > 0" class="text-sm line-through text-gray-400">${{ product.price }}</span>
       </div>
-      <div class="card-actions justify-end mt-4">
-        <router-link :to="`/product/${product.id}`" class="btn btn-primary btn-sm w-full">View Product</router-link>
+      <div class="card-actions flex-col mt-4">
+        <button 
+          @click="cartStore.addToCart(product)" 
+          class="btn btn-primary w-full" 
+          :disabled="product.stock === 0"
+        >
+          {{ product.stock === 0 ? 'Out of Stock' : 'Add to Cart' }}
+        </button>
+        <router-link :to="`/product/${product.id}`" class="btn btn-outline btn-sm w-full mt-2">View Details</router-link>
       </div>
     </div>
   </div>

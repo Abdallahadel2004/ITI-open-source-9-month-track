@@ -1,0 +1,62 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Cozy Sneakers",
+      "description": "High-quality sneakers that go with everything you wear.",
+      "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnN8ZW58MHx8MHx8fDA%3D",
+      "badge": "NEW",
+      "price": 120,
+      "discount": 20,
+      "stock": 8,
+      "tags": [
+        "Fashion",
+        "Casual",
+        "Sport"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Running Shoes",
+      "description": "Built for speed and comfort on any terrain.",
+      "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "badge": "",
+      "price": 90,
+      "discount": 10,
+      "stock": 5,
+      "tags": [
+        "Sport",
+        "Running"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Casual Boots",
+      "description": "Rugged boots for everyday adventures.",
+      "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "badge": "SALE",
+      "price": 150,
+      "discount": 0,
+      "stock": 0,
+      "tags": [
+        "Casual",
+        "Winter"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Flip Flops",
+      "description": "Light and breezy for sunny days.",
+      "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "badge": "",
+      "price": 30,
+      "discount": 50,
+      "stock": 19,
+      "tags": [
+        "Summer",
+        "Casual"
+      ]
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
