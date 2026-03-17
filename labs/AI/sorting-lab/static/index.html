@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Sorting Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <main class="container">
+        <header>
+            <h1 class="glitch" data-text="SORTING ALGORITHM LAB">SORTING ALGORITHM LAB</h1>
+            <p class="subtitle">Experience the power of efficient sorting with premium aesthetics.</p>
+        </header>
+
+        <section class="controls-card">
+            <div class="input-group">
+                <label for="array-input">Array Elements</label>
+                <input type="text" id="array-input" placeholder="e.g., 5, 2, 9" value="64, 34, 25, 12, 22, 11, 90">
+            </div>
+
+            <div class="input-group">
+                <label for="algo-select">Algorithm</label>
+                <select id="algo-select">
+                    <option value="quicksort">QuickSort</option>
+                    <option value="mergesort">MergeSort</option>
+                    <option value="heapsort">HeapSort</option>
+                    <option value="bubblesort">BubbleSort</option>
+                    <option value="selectionsort">SelectionSort</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="speed-range">Animation Speed</label>
+                <input type="range" id="speed-range" min="10" max="1000" value="800" step="10">
+            </div>
+
+            <button id="sort-btn">SORT NOW</button>
+        </section>
+
+        <section class="visualizer-card">
+            <h1 class="glitch" style="font-size: 1.5rem; margin-bottom: 2rem;">REAL-TIME VISUALIZATION</h1>
+            <div id="visualizer-container"></div>
+        </section>
+
+        <section class="results-layout">
+            <div class="result-card" id="original-card">
+                <h3>Original Array</h3>
+                <div class="array-display" id="original-display">Ready...</div>
+            </div>
+            
+            <div class="result-card" id="sorted-card">
+                <h3>Sorted Result</h3>
+                <div class="array-display" id="sorted-display">Waiting for input...</div>
+            </div>
+        </section>
+
+        <section class="performance-card">
+            <div id="status-message">Status: Idle</div>
+            <div id="time-display">Time: 0ms</div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
