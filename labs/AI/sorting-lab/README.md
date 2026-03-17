@@ -1,38 +1,92 @@
-# Sorting Algorithm Lab - Lab Report
+# 🚀 Sorting Algorithm Lab (Node.js)
 
-## 1. Project Overview
-This laboratory assignment involves the implementation, analysis, and testing of several sorting algorithms: QuickSort (recursive, iterative, and parallel), MergeSort, and HeapSort. The project includes a robust FastAPI backend and a premium, neon-themed web interface for user interaction and visualization.
+A premium, interactive web application to visualize and test various sorting algorithms. This project features a high-performance Express backend, a neon-themed real-time visualizer, and an integrated Postman testing suite.
 
-## 2. Implemented Algorithms
-- **QuickSort (Recursive):** A classic divide-and-conquer approach.
-- **QuickSort (Iterative):** Optimized to avoid recursion depth issues on large datasets.
-- **MergeSort:** A stable, O(n log n) divide-and-conquer algorithm.
-- **HeapSort:** An in-place comparison-based sorting algorithm with guaranteed O(n log n) performance.
-- **Parallel QuickSort (Bonus):** Leverages Python's `ThreadPoolExecutor` for concurrent processing of partitions.
+## ✨ Features
+- **Real-time Visualization**: Watch algorithms in action with dynamic bar animations.
+- **Performance Tracking**: Precise server-side execution time in milliseconds.
+- **Multiple Algorithms**:
+  - QuickSort (Recursive & Iterative)
+  - MergeSort
+  - HeapSort
+  - BubbleSort
+  - SelectionSort
+- **API Support**: Test algorithms directly via REST endpoints.
+- **Interactive UI**: Custom neon design with adjustable animation speed.
 
-## 3. Complexity Analysis & Comparison
+---
 
-| Algorithm | Best case | Average case | Worst case | Space Complexity |
-| :--- | :--- | :--- | :--- | :--- |
-| QuickSort | O(n log n) | O(n log n) | O(n²) | O(log n) |
-| MergeSort | O(n log n) | O(n log n) | O(n log n) | O(n) |
-| HeapSort | O(n log n) | O(n log n) | O(n log n) | O(1) |
+## 🛠️ MCP (Model Context Protocol)
+This project leverages specialized MCP servers to enhance the development and testing experience:
+- **StitchMCP**: Used for AI-driven UI design and refinement, ensuring a high-quality, neon-themed user interface.
+- **Postman MCP**: Used for automated API collection management, request generation, and endpoint verification directly from the AI environment.
 
-## 4. Benchmarking Results
-Based on our `benchmark_sorting.py` script (1000 random elements):
-- **Iterative QuickSort** consistently showed high performance on random data.
-- **MergeSort** maintained stable performance regardless of initial ordering.
-- **Parallel QuickSort** showed benefits for extremely large datasets where overhead is justified.
+---
 
-## 5. Development Process with Copilot
-Copilot assisted in several key areas:
-- **Code Generation:** Provided initial skeletons for complex algorithms like HeapSort and MergeSort.
-- **Documentation:** Assisted in writing docstrings and complexity analysis.
-- **Testing:** Generated unit tests for edge cases (empty arrays, duplicates).
-- **Frontend Styling:** Suggested CSS glow effects and layout improvements for the neon theme.
+## 🛠️ Getting Started
 
-## 6. How to Run
-1.  **Install dependencies:** `npm install`
-2.  **Run Server:** `node server.js`
-3.  **Access UI:** Visit `http://localhost:8000/static/index.html`
-4.  **Run Tests:** `npm test`
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) (installed with Node.js)
+
+### Installation
+1. Clone the repository and navigate to the lab folder:
+   ```bash
+   cd labs/AI/sorting-lab
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Project
+1. Start the server:
+   ```bash
+   npm start
+   ```
+2. Open your browser and go to:
+   ```
+   http://localhost:8000/static/index.html
+   ```
+
+---
+
+## 📡 API Reference
+
+### Sort Array
+Sort a numerical array using a specified algorithm.
+
+- **Endpoint**: `POST /sort`
+- **Headers**: `Content-Type: application/json`
+- **Body**:
+  ```json
+  {
+    "array": [64, 34, 25, 12, 22, 11, 90],
+    "algorithm": "mergesort"
+  }
+  ```
+- **Valid Algorithms**: `quicksort_recursive`, `quicksort_iterative`, `mergesort`, `heapsort`, `bubblesort`, `selectionsort`.
+
+#### Example Response
+```json
+{
+  "original": [64, 34, 25, 12, 22, 11, 90],
+  "sorted": [11, 12, 22, 25, 34, 64, 90],
+  "algorithm": "mergesort",
+  "execution_time_ms": "0.015"
+}
+```
+
+---
+
+## 🧪 Testing
+- **API Tests**: Run `npm test` to execute the automated server tests.
+- **Postman**: Import the "Sorting Lab JS API" collection from your Postman workspace to test interactively.
+
+---
+
+## 📁 Project Structure
+- `server.js`: Express server handle routing and CORS.
+- `sorting_logic.js`: Core algorithm implementations.
+- `static/`: Frontend assets (HTML, CSS, JS).
+- `test_sorting.js`: Unit tests for the algorithms.
