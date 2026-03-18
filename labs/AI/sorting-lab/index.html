@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neon Sorting Lab</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="background-animation"></div>
+    <div id="hero-root"></div>
     <main class="container">
-        <header>
-            <h1 class="glitch" data-text="SORTING ALGORITHM LAB">SORTING ALGORITHM LAB</h1>
-            <p class="subtitle">Experience the power of efficient sorting with premium aesthetics.</p>
-        </header>
 
         <section class="controls-card">
             <div class="input-group">
@@ -62,6 +59,7 @@
             <div id="time-display">Time: 0ms</div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

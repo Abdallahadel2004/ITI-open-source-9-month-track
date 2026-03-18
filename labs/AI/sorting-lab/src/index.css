@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --border: 0 0% 14.9%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: black;
+}

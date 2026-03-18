@@ -151,4 +151,4 @@ class SortingAlgorithms {
     }
 }
 
-module.exports = SortingAlgorithms;
+export default SortingAlgorithms;
