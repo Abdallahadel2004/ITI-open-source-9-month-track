@@ -157,6 +157,42 @@ $data = file_exists($userInfoFile) ? file_get_contents($userInfoFile) : "";
     </form>
 </div>
 
+<div class="container" style="max-width: 900px; margin-top: 30px;">
+    <h2>Registered Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Room</th>
+                <th>Ext.</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (file_exists($userInfoFile)) {
+                $file = fopen($userInfoFile, "r");
+                while (($line = fgets($file)) !== false) {
+                    $userData = explode('|', trim($line));
+                    if (count($userData) >= 5) {
+                        echo "<tr>";
+                        echo "<td><img src='{$uploadDir}{$userData[4]}' width='50' height='50' alt='Profile'></td>";
+                        echo "<td>" . htmlspecialchars($userData[0]) . "</td>";
+                        echo "<td>" . htmlspecialchars($userData[1]) . "</td>";
+                        echo "<td>" . htmlspecialchars($userData[2]) . "</td>";
+                        echo "<td>" . htmlspecialchars($userData[3]) . "</td>";
+                        echo "</tr>";
+                    }
+                }
+                fclose($file);
+            } else {
+                echo "<tr><td colspan='5' style='text-align: center;'>No users registered yet.</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>
