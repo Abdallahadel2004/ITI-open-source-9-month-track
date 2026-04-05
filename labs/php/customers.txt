@@ -1,0 +1,7 @@
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP, MySQL | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP, MySQL, J2SE, PostgreSQL | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP, MySQL, J2SE, PostgreSQL | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: None | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP, MySQL | Department: OpenSource
+Name: abdallah abdelgwad | Address: shalabi | Skills: PHP, MySQL | Department: OpenSource
