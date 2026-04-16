@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers;
-
+use App\Models\posts;
 use Illuminate\Http\Request;
 
 class posts_controller extends Controller
 {
-private function getPosts()
+/*private function getPosts()
   {
      return [
        [
@@ -42,5 +42,66 @@ private function getPosts()
             }
         }
         return view('show', compact('post'));
+    }*/
+// function index for 
+    function index(){
+        $posts=posts::paginate(10);
+        return view("posts",['posts'=>$posts]);
+    }    
+    function show($id){
+        $posts=posts::findOrFail($id);
+        return view("show",['post'=>$posts]);
+    }
+    function create(){
+        return view("Posts.create");
+    }
+    function store(){
+        $posts=new posts();
+        request()->validate([
+            "title"=>"required",
+            "content"=>"required",
+            "author"=>"required"
+        ]);
+        $posts->title=request("title");
+        $posts->content=request("content");
+        $posts->author=request("author");
+        $posts->save();
+        return redirect("/posts");
+    }
+    function edit($id){
+        $posts=posts::findOrFail($id);
+        return view("Posts.edit",['post'=>$posts]);
+    }
+    function update($id){
+        request()->validate([
+            "title"=>"required",
+            "content"=>"required",
+            "author"=>"required"
+        ]);
+        $posts=posts::findOrFail($id);
+        $posts->title=request("title");
+        $posts->content=request("content");
+        $posts->author=request("author");
+        $posts->save();
+        return redirect("/posts");
+    }
+    function delete($id){
+        $posts=posts::findOrFail($id);
+        $posts->delete();
+        return redirect("/posts");
+    }
+    function deleted(){
+        $posts=posts::onlyTrashed()->get();
+        return view("deleted",['posts'=>$posts]);
+    }
+    function restore($id){
+        $posts=posts::onlyTrashed()->findOrFail($id);
+        $posts->restore();
+        return redirect("/posts");
+    }
+    function forceDelete($id){
+        $posts=posts::onlyTrashed()->findOrFail($id);
+        $posts->forceDelete();
+        return redirect("/posts");
     }
 }

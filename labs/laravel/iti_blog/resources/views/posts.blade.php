@@ -1,30 +1,66 @@
 @extends('navebar')
 
 @section('content')
-<div class="container mt-4">
-    <h2 class="fw-bold mb-4" style="color: #1a202c;">All Posts</h2>
-    
-    <div class="table-responsive">
-        <table class="table align-middle">
-            <thead>
-                <tr style="border-bottom: 2px solid #edf2f7;">
-                    <th scope="col" class="border-0 pb-3">Title</th>
-                    <th scope="col" class="border-0 pb-3">Description</th>
-                    <th scope="col" class="border-0 pb-3">View</th>
-                </tr>
-            </thead>
-            <tbody>
-@foreach ($posts as $post)
-        <tr>
-                    <td class="py-3 text-dark fw-medium">{{ $post['title'] }}</td>
-                    <td class="py-3 text-secondary">{{ $post['content'] }}</td>
-                    <td class="py-3">
-                        <a href="/posts/{{ $post['title'] }}" class="btn btn-sm" style="background-color: #5a4fcf; color: white; border-radius: 4px; padding: 5px 15px;">Show</a>
-                    </td>
-      </tr>
- @endforeach
-            </tbody>
-        </table>
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+        <div class="sm:flex sm:items-center sm:justify-between mb-6">
+            <div class="text-center sm:text-left">
+                <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">All Posts</h1>
+                <a href="/posts/create" class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700 transition">
+                    Create Post
+                </a><span>
+                    <a href="/posts/deleted" class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700 transition">
+                        show delted posts
+                    </a>
+                </span>
+                <p class="mt-1.5 text-sm text-gray-500">View and manage your recent blog posts.</p>
+            </div>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 shadow-sm">
+            <div class="overflow-x-auto rounded-t-lg">
+                <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead class="ltr:text-left rtl:text-right">
+                        <tr>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Title</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Description</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-right">View</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-right">Edit</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-right">Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach ($posts as $post)
+                            <tr class="hover:bg-gray-50">
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{{ $post['title'] }}</td>
+                                <td class="px-4 py-3 text-gray-700 min-w-[200px]">{{ $post['content'] }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-right space-x-2">
+                                    <a href="/posts/{{ $post['id'] }}"
+                                        class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700 transition">
+                                            Show
+                                        </a>
+                                </td>
+                                <td class="edit px-4 py-3 text-right space-x-2">
+                                    <a href="/posts/{{ $post['id'] }}/edit"
+                                        class="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700 transition">
+                                            Edit
+                                        </a>
+                                </td>
+                                <td class="danger px-4 py-3 text-right space-x-2">
+                                    <a  onclick="return confirm('Are you sure you want to delete this post?')" href="/posts/{{ $post['id'] }}/delete"
+                                        class="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700 transition">
+                                            Delete
+                                        </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            {{ $posts->links() }}
+        </div>
     </div>
-</div>
 @endsection
