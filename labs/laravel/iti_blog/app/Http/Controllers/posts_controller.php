@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use App\Models\posts;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class posts_controller extends Controller
 {
@@ -55,34 +57,36 @@ class posts_controller extends Controller
     function create(){
         return view("Posts.create");
     }
-    function store(){
+    function store(StorePostRequest $request){
         $posts=new posts();
-        request()->validate([
-            "title"=>"required",
-            "content"=>"required",
-            "author"=>"required"
-        ]);
-        $posts->title=request("title");
-        $posts->content=request("content");
-        $posts->author=request("author");
+        $posts->title=$request->input('title');
+        $posts->content=$request->input('content');
+        $posts->author=$request->input('author');
         $posts->save();
+
+        if ($request->filled('tags')) {
+            $tags = array_map('trim', explode(',', $request->input('tags')));
+            $posts->attachTags($tags);
+        }
+
         return redirect("/posts");
     }
     function edit($id){
         $posts=posts::findOrFail($id);
         return view("Posts.edit",['post'=>$posts]);
     }
-    function update($id){
-        request()->validate([
-            "title"=>"required",
-            "content"=>"required",
-            "author"=>"required"
-        ]);
+    function update(UpdatePostRequest $request, $id){
         $posts=posts::findOrFail($id);
-        $posts->title=request("title");
-        $posts->content=request("content");
-        $posts->author=request("author");
+        $posts->title=$request->input('title');
+        $posts->content=$request->input('content');
+        $posts->author=$request->input('author');
         $posts->save();
+
+        if ($request->has('tags')) {
+            $tags = array_filter(array_map('trim', explode(',', $request->input('tags'))));
+            $posts->syncTags($tags);
+        }
+
         return redirect("/posts");
     }
     function delete($id){

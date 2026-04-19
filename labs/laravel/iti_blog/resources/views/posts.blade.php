@@ -22,6 +22,8 @@
                     <thead class="ltr:text-left rtl:text-right">
                         <tr>
                             <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Title</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Slug</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Tags</th>
                             <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-left">Description</th>
                             <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-right">View</th>
                             <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900 text-right">Edit</th>
@@ -32,7 +34,15 @@
                     <tbody class="divide-y divide-gray-200">
                         @foreach ($posts as $post)
                             <tr class="hover:bg-gray-50">
-                                <td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">{{ $post['title'] }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-900 break-words">{{ $post['title'] }}</td>
+                                <td class="px-4 py-3 text-gray-500 break-all">{{ $post['slug'] }}</td>
+                                <td class="px-4 py-3 text-gray-500">
+                                    <div class="flex flex-wrap gap-1">
+                                        @foreach($post->tags as $tag)
+                                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{{ $tag->name }}</span>
+                                        @endforeach
+                                    </div>
+                                </td>
                                 <td class="px-4 py-3 text-gray-700 min-w-[200px]">{{ $post['content'] }}</td>
                                 <td class="whitespace-nowrap px-4 py-3 text-right space-x-2">
                                     <a href="/posts/{{ $post['id'] }}"

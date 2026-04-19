@@ -48,6 +48,17 @@
                 ></textarea><p class="text-danger"> {{$errors->first('content')  }} </p>
             </div>
 
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="tags">Tags (comma separated)</label>
+                <input 
+                    class="mt-1 w-full rounded-md border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                    id="tags" 
+                    name="tags" 
+                    type="text" 
+                    placeholder="e.g. laravel, php, coding"
+                ><p class="text-danger">{{ $errors->first('tags') }}</p>
+            </div>
+
             <div class="flex items-center justify-end space-x-3 pt-4">
                 <a href="/posts" class="text-sm font-medium text-gray-500 hover:text-gray-700 transition">Cancel</a>
                 <button 

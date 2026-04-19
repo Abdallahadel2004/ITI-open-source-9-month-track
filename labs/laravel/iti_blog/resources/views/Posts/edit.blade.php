@@ -13,7 +13,7 @@
         </ul>
     </div>
 @endif      
-        <form action="/posts" method="POST" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <form action="/posts/{{ $post->id }}" method="POST" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
             @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700" for="title">Title</label>
@@ -47,6 +47,18 @@
                     rows="6" 
                 >{{ old('content', $post['content']) }}</textarea>
                 <p class="text-danger"> {{$errors->first('content')  }} </p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="tags">Tags (comma separated)</label>
+                <input 
+                    class="mt-1 w-full rounded-md border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" 
+                    id="tags" 
+                    name="tags" 
+                    type="text" 
+                    value="{{ old('tags', $post->tags->pluck('name')->implode(', ')) }}"
+                    placeholder="e.g. laravel, php, coding"
+                ><p class="text-danger">{{ $errors->first('tags') }}</p>
             </div>
 
             <div class="flex items-center justify-end space-x-3 pt-4">
