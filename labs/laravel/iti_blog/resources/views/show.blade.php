@@ -16,6 +16,12 @@
   <div class="border-t-2 border-black p-4 sm:p-6">
     <h3 class="text-lg font-semibold text-black"><span class="font-bold">Title:&nbsp;</span>{{ $post['title'] }}</h3>
 
+    @if($post->image)
+    <div class="mt-4">
+      <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" class="w-full max-w-lg rounded-md border-2 border-black shadow-sm">
+    </div>
+    @endif
+
     <p class="mt-2 text-sm text-pretty">
     <span class="font-bold">Content:&nbsp;</span>{{ $post['content'] }}
     </p>
@@ -38,7 +44,16 @@
     
     @forelse($post->comments as $comment)
         <div class="mb-4 p-3 bg-white border border-gray-200 rounded shadow-sm">
-            <p class="text-xs font-bold text-gray-800 mb-1">{{ optional($comment->user)->name ?? 'Unknown User' }} commented:</p>
+            <div class="flex items-center justify-between">
+                <p class="text-xs font-bold text-gray-800 mb-1">{{ optional($comment->user)->name ?? 'Unknown User' }} commented:</p>
+                @can('is-admin')
+                <form action="/comments/{{ $comment->id }}" method="POST" onsubmit="return confirm('Delete this comment?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-xs text-red-600 font-bold hover:text-red-800">Delete</button>
+                </form>
+                @endcan
+            </div>
             <p class="text-sm text-gray-700">{{ $comment->body }}</p>
         </div>
     @empty

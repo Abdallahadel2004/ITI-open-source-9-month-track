@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\Tags\HasTags;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 
 class posts extends Model
 {
@@ -15,7 +17,7 @@ class posts extends Model
     use Sluggable;
     use HasTags;
 
-    protected $fillable = ['title', 'content', 'author'];
+    protected $fillable = ['title', 'content', 'author', 'image'];
 
     public function sluggable(): array
     {
@@ -24,6 +26,14 @@ class posts extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+// mutator to get the full image url
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->image ? Storage::url($this->image) : null,
+        );
     }
 
     public function comments()

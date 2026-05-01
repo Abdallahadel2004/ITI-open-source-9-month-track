@@ -24,7 +24,8 @@ class UpdatePostRequest extends FormRequest
         return [
             "title" => ["required", "min:3", "unique:posts,title," . $this->route('id')],
             "content" => ["required", "min:10"],
-            "author" => ["required"]
+            "author" => ["required"],
+            "image" => ["nullable", "image", "mimes:jpg,png", "max:2048"],
         ];
     }
     public function messages(): array
@@ -36,6 +37,9 @@ class UpdatePostRequest extends FormRequest
             "content.required" => "Content is required",
             "content.min" => "Content must be at least 10 characters",
             "author.required" => "Author is required",
+            "image.image" => "The file must be an image",
+            "image.mimes" => "Only .jpg and .png images are allowed",
+            "image.max" => "Image size must not exceed 2MB",
         ];
     }
 }

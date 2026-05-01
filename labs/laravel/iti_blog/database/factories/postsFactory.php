@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends Factory<posts>
  */
-class PostFactory extends Factory
+class postsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

@@ -4,3 +4,5 @@ node_modules
 labs\node js\.package-lock.json
 labs/node js/Day3task/Email/email.js
 agent.md
+labs/AI-day2/chatgpt_clone/.env
+

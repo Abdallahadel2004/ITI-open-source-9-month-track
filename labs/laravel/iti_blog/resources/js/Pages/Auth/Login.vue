@@ -92,8 +92,14 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Log in
+                    Log in 
                 </PrimaryButton>
+                <a
+                    :href="route('auth.github')"
+                    class="ms-4 rounded-md bg-gray-500 px-4 py-2 text-white hover:bg-gray-600"
+                >
+                    Login with GitHub
+                </a>
             </div>
         </form>
     </GuestLayout>

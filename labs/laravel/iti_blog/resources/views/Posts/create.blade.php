@@ -13,7 +13,7 @@
         </ul>
     </div>
 @endif           
-        <form action="/posts" method="POST" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+        <form action="/posts" method="POST" enctype="multipart/form-data" class="space-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
             @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700" for="title">Title</label>
@@ -46,6 +46,17 @@
                     rows="6" 
                     placeholder="Enter post content"
                 ></textarea><p class="text-danger"> {{$errors->first('content')  }} </p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="image">Post Image (.jpg, .png only)</label>
+                <input 
+                    class="mt-1 w-full rounded-md border-gray-200 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" 
+                    id="image" 
+                    name="image" 
+                    type="file" 
+                    accept=".jpg,.png"
+                ><p class="text-danger">{{ $errors->first('image') }}</p>
             </div>
 
             <div>

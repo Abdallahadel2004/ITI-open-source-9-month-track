@@ -4,6 +4,8 @@ use App\Models\posts;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class posts_controller extends Controller
 {
@@ -55,13 +57,23 @@ class posts_controller extends Controller
         return view("show",['post'=>$posts]);
     }
     function create(){
+        Gate::authorize('is-admin');
         return view("Posts.create");
     }
     function store(StorePostRequest $request){
+        Gate::authorize('is-admin');
+
         $posts=new posts();
         $posts->title=$request->input('title');
         $posts->content=$request->input('content');
         $posts->author=$request->input('author');
+
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('posts', 'public');
+            $posts->image = $path;
+        }
+
         $posts->save();
 
         if ($request->filled('tags')) {
@@ -73,10 +85,23 @@ class posts_controller extends Controller
     }
     function edit($id){
         $posts=posts::findOrFail($id);
+
+        $this->authorize('update', $posts);
         return view("Posts.edit",['post'=>$posts]);
     }
     function update(UpdatePostRequest $request, $id){
         $posts=posts::findOrFail($id);
+        $this->authorize('update', $posts);
+
+
+        if ($request->hasFile('image')) {
+            if ($posts->image) {
+                Storage::disk('public')->delete($posts->image);
+            }
+            $path = $request->file('image')->store('posts', 'public');
+            $posts->image = $path;
+        }
+
         $posts->title=$request->input('title');
         $posts->content=$request->input('content');
         $posts->author=$request->input('author');
@@ -91,6 +116,8 @@ class posts_controller extends Controller
     }
     function delete($id){
         $posts=posts::findOrFail($id);
+
+        $this->authorize('delete', $posts);
         $posts->delete();
         return redirect("/posts");
     }
@@ -105,6 +132,12 @@ class posts_controller extends Controller
     }
     function forceDelete($id){
         $posts=posts::onlyTrashed()->findOrFail($id);
+
+
+        if ($posts->image) {
+            Storage::disk('public')->delete($posts->image);
+        }
+
         $posts->forceDelete();
         return redirect("/posts");
     }

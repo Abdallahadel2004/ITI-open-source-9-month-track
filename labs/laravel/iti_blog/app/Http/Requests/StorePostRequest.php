@@ -25,7 +25,8 @@ class StorePostRequest extends FormRequest
         return [
             "title" => ["required", "min:3", "unique:posts,title"],
             "content" => ["required", "min:10"],
-            "author" => ["required", new MaxPostsRule()]
+            "author" => ["required", new MaxPostsRule()],
+            "image" => ["nullable", "image", "mimes:jpg,png", "max:2048"],
         ];
     }
     public function messages(): array
@@ -37,6 +38,9 @@ class StorePostRequest extends FormRequest
             "content.required" => "Content is required",
             "content.min" => "Content must be at least 10 characters",
             "author.required" => "Author is required",
+            "image.image" => "The file must be an image",
+            "image.mimes" => "Only .jpg and .png images are allowed",
+            "image.max" => "Image size must not exceed 2MB",
         ];
     }
 }

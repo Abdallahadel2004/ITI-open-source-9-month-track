@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'github_id', 'avatar', 'role'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * Get the attributes that should be cast.
@@ -30,6 +31,18 @@ class User extends Authenticatable
         ];
     }
 
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin' || $this->role === 'super-admin';
+    }
+
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super-admin';
+    }
+
     public function posts()
     {
         return $this->hasMany(posts::class, 'author');
@@ -38,5 +51,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }
