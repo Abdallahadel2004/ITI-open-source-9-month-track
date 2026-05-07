@@ -1,0 +1,106 @@
+/* ===== Movie Details Page ===== */
+.details-page {
+  background-color: #141414;
+  min-height: 100vh;
+  padding: 30px;
+  color: white;
+}
+
+/* Back button */
+.back-link {
+  color: #e50914;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.back-link:hover {
+  color: #ff3b3b;
+}
+
+/* Main layout: poster + info side by side */
+.details-content {
+  display: flex;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #1c1c1c;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Poster */
+.details-poster img {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+}
+
+/* Info section */
+.details-info {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.details-info h1 {
+  font-size: 28px;
+  color: #fff;
+  margin: 0;
+}
+
+.details-tagline {
+  color: #e50914;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.details-rating {
+  color: #f5c518;
+  font-size: 18px;
+}
+
+.details-runtime {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.details-date {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Genres badges */
+.details-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.details-genres span {
+  background-color: #e50914;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Overview text */
+.details-overview {
+  color: #ccc;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 700px) {
+  .details-content {
+    flex-direction: column;
+  }
+  .details-poster img {
+    width: 100%;
+    height: auto;
+  }
+}

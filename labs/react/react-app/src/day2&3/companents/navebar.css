@@ -1,0 +1,40 @@
+/* ===== Navbar ===== */
+.movie-navbar {
+  background-color: #0d0d0d !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  padding: 12px 0;
+}
+
+/* Brand / Logo */
+.navbar-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e50914 !important;
+  letter-spacing: 1px;
+}
+
+.navbar-logo span {
+  color: #ffffff;
+}
+
+/* Nav Links */
+.movie-navbar .nav-link {
+  color: #bbb !important;
+  font-size: 15px;
+  font-weight: 500;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+.movie-navbar .nav-link:hover {
+  color: #e50914 !important;
+}
+
+/* Hamburger icon color */
+.movie-navbar .navbar-toggler {
+  border-color: rgba(229, 9, 20, 0.4);
+}
+
+.movie-navbar .navbar-toggler-icon {
+  filter: invert(1);
+}
