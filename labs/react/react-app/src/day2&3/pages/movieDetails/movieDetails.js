@@ -4,14 +4,23 @@ import axios from "axios";
 import Spinner from "../../companents/Spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { StartLoading } from "../../Redux/Actions/loadAction";
+import { FavMovie, RemoveFavMovie } from "../../Redux/Actions/FavAction";
 import "./movieDetails.css";
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-
-  const loading = useSelector(state => state.Loading.loader);
+const loading = useSelector(state => state.Loading.loader);
+  const favs = useSelector(state => state.fav.fav_movies);
   const dispatch = useDispatch();
+
+  const toggleFav = () => {
+    if (favs.some(fav => fav.id === movie.id)) {
+      dispatch(RemoveFavMovie(movie));
+    } else {
+      dispatch(FavMovie(movie));
+    }
+  };
 
   useEffect(() => {
     dispatch(StartLoading(true));
@@ -57,6 +66,18 @@ function MovieDetails() {
               })}
             </div>
             <p className="details-overview">{movie.overview}</p>
+          </div>
+          <div className="details-actions">
+            <button 
+              className="details-fav-button"
+              onClick={toggleFav}
+              >
+              {favs.some(fav => fav.id === movie.id) ? (
+                <i className="fa-solid fa-heart" style={{ color: '#e22e16ff' }}></i>
+              ) : (
+                <i className="fa-regular fa-heart" style={{ color: 'white' }}></i>
+              )}
+            </button>
           </div>
         </div>
       </div>

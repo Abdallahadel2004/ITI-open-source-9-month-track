@@ -104,3 +104,25 @@
     height: auto;
   }
 }
+
+/* Actions */
+.details-actions {
+  margin-top: 20px;
+}
+
+.details-fav-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 32px;
+  padding: 10px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.details-fav-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

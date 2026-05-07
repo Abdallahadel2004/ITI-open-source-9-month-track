@@ -20,7 +20,7 @@ const dispatch =useDispatch();
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">Movies</Nav.Link>
-            <Nav.Link as={Link} to="/favorites"><i className="fa-solid fa-heart" style={{ color: '#e50914' }}></i> Favorites ({favCount})</Nav.Link>
+            <Nav.Link as={Link} to="/favorites"><i className="fa-solid fa-heart" style={{ color: '#e50914' }}></i> Favorites {favCount}</Nav.Link>
             <Nav.Link as={Link} to="/login">Login</Nav.Link>
             <Nav.Link as={Link} to="/register">Register</Nav.Link>
           </Nav>

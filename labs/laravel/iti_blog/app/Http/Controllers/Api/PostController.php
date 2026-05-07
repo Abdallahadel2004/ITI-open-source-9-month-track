@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use App\Http\Resources\PostResource;
+
 
 class PostController extends Controller
 {
@@ -69,17 +71,17 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = posts::with('user')->paginate(10);
+        $posts = posts::with(['user', 'comments.user'])->paginate(10);
 
-        return response()->json($posts);
+        return PostResource::collection($posts);
     }
 
 
     public function show($id)
     {
-        $post = posts::with('user')->findOrFail($id);
+        $post = posts::with(['user', 'comments.user'])->findOrFail($id);
 
-        return response()->json($post);
+        return new PostResource($post);
     }
 
 
@@ -96,6 +98,6 @@ class PostController extends Controller
             ['author' => $request->user()->id]
         ));
 
-        return response()->json($post->load('user'), 201);
+        return new PostResource($post->load('user'));
     }
 }
