@@ -9,6 +9,13 @@ use App\Models\posts;
 
 class MaxPostsRule implements ValidationRule
 {
+    protected $userId;
+
+    public function __construct($userId = null)
+    {
+        $this->userId = $userId;
+    }
+
     /**
      * Run the validation rule.
      *
@@ -16,7 +23,9 @@ class MaxPostsRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $postCount = posts::where('author', $value)->count();
+        $userId = $this->userId ?? $value;
+
+        $postCount = posts::where('author', $userId)->count();
 
         if ($postCount >= 3) {
             $fail('This user is only allowed to create a maximum of 3 posts.');

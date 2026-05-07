@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Resources\PostResource;
+use App\Rules\MaxPostsRule;
 
 
 class PostController extends Controller
@@ -88,7 +89,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'   => ['required', 'string', 'max:255'],
+            'title'   => ['required', 'string', 'max:255', new MaxPostsRule($request->user()->id)],
             'content' => ['required', 'string'],
             'image'   => ['nullable', 'string'],
         ]);
