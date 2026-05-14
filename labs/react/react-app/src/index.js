@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -6,12 +6,24 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './day2&3/Redux/Store';
+import { LanguageContext } from './day2&3/context/LanguageContext';
+
+const Lang = () => {
+  const [language, setLanguage] = useState('en');
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </LanguageContext.Provider>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-    <App />
-    </Provider>
+    <Lang />
   </React.StrictMode>
 );
 

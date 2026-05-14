@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../axios_interceptor/interceptor";
 import Spinner from "../../companents/Spinner";
 import { useSelector, useDispatch } from "react-redux";
-import { StartLoading } from "../../Redux/Actions/loadAction";
 import { FavMovie, RemoveFavMovie } from "../../Redux/Actions/FavAction";
+import { LanguageContext } from "../../context/LanguageContext";
 import "./movieDetails.css";
 
 function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-const loading = useSelector(state => state.Loading.loader);
+  const loading = useSelector(state => state.Loading.loader);
   const favs = useSelector(state => state.fav.fav_movies);
   const dispatch = useDispatch();
+  const { language } = useContext(LanguageContext);
 
   const toggleFav = () => {
     if (favs.some(fav => fav.id === movie.id)) {
@@ -23,17 +24,14 @@ const loading = useSelector(state => state.Loading.loader);
   };
 
   useEffect(() => {
-    dispatch(StartLoading(true));
-    axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=4e4c0d02dc6d20c10d058b163c4c6b9d`)
+    axiosInstance.get(`/movie/${id}`, { params: { language } })
       .then((data) => {
         setMovie(data.data);
-        dispatch(StartLoading(false));
       })
       .catch((err) => {
         console.log(err);
-        dispatch(StartLoading(false));
       });
-  }, [id]);
+  }, [id, language]);
 
   if (loading) {
     return <div className="loading"><Spinner /></div>;

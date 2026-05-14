@@ -1,37 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Search from "../../companents/search";
 import Card from "../../companents/card";
 import Spinner from "../../companents/Spinner";
 import { useSelector, useDispatch } from "react-redux";
-import { StartLoading } from "../../Redux/Actions/loadAction";
+import { getMovies } from "../../Redux/Actions/moviesAction";
+import { LanguageContext } from "../../context/LanguageContext";
 import "./home.css";
 
 function Home() {
-  const [movies, setMovies] = useState([]);
+  const movies = useSelector(state => state.movies.moviesList);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
 
   const loading = useSelector(state => state.Loading.loader);
   const dispatch = useDispatch();
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
-    dispatch(StartLoading(true));
-    let url = query 
-      ? `https://api.themoviedb.org/3/search/movie?api_key=4e4c0d02dc6d20c10d058b163c4c6b9d&query=${query}&page=${page}`
-      : `https://api.themoviedb.org/3/movie/popular?api_key=4e4c0d02dc6d20c10d058b163c4c6b9d&page=${page}`;
-
-    axios.get(url)
-      .then((data) => {
-        setMovies(data.data.results);
-        dispatch(StartLoading(false));
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch(StartLoading(false));
-      });
-  }, [page, query]);
+    dispatch(getMovies(query, page, language));
+  }, [page, query, language, dispatch]);
 
   const handleSearch = (searchString) => {
     setQuery(searchString);
