@@ -3,14 +3,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from "react-router-dom";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { LanguageContext } from '../context/LanguageContext';
 import "./navebar.css";
 
 function Navebar() {
   const favCount = useSelector((state) => state.fav.fav_count);
-const dispatch =useDispatch();
   const { language, setLanguage } = useContext(LanguageContext);
 
   return (
