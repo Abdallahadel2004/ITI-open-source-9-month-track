@@ -25,6 +25,36 @@
   </form>
 
   <hr>
+
+  <h5>Filter Students</h5>
+  <form action="{% url 'students' %}" method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+      <input type="text" name="name" value="{{ request.GET.name }}" placeholder="Search by name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="phone" value="{{ request.GET.phone }}" placeholder="Search by phone" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <select name="level" class="form-select form-select-sm">
+        <option value="">Choose Level</option>
+        {% for val, label in levels %}
+          <option value="{{ val }}" {% if request.GET.level == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select name="gender" class="form-select form-select-sm">
+        <option value="">Choose Gender</option>
+        <option value="M" {% if request.GET.gender == "M" %}selected{% endif %}>Male</option>
+        <option value="F" {% if request.GET.gender == "F" %}selected{% endif %}>Female</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-secondary btn-sm">Filter</button>
+      <a href="{% url 'students' %}" class="btn btn-outline-secondary btn-sm">Clear</a>
+    </div>
+  </form>
+
   <table class="table table-bordered">
     <thead>
       <tr>

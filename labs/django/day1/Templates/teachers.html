@@ -12,6 +12,27 @@
   </form>
 
   <hr>
+
+  <h5>Filter Teachers</h5>
+  <form action="{% url 'teachers' %}" method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+      <input type="text" name="name" value="{{ request.GET.name }}" placeholder="Search by name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <input type="number" name="age" value="{{ request.GET.age }}" placeholder="Age" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <input type="number" name="min_salary" value="{{ request.GET.min_salary }}" placeholder="Min Salary" step="0.01" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <input type="number" name="max_salary" value="{{ request.GET.max_salary }}" placeholder="Max Salary" step="0.01" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-3 d-flex gap-1">
+      <button type="submit" class="btn btn-secondary btn-sm flex-grow-1">Filter</button>
+      <a href="{% url 'teachers' %}" class="btn btn-outline-secondary btn-sm flex-grow-1">Clear</a>
+    </div>
+  </form>
+
   <table class="table table-bordered">
     <thead>
       <tr>

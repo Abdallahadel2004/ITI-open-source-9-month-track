@@ -43,6 +43,32 @@
   </form>
 
   <hr>
+
+  <h5>Filter Courses</h5>
+  <form action="{% url 'courses' %}" method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+      <input type="text" name="name" value="{{ request.GET.name }}" placeholder="Course Name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2">
+      <select name="level" class="form-select form-select-sm">
+        <option value="">Choose Level</option>
+        {% for val, label in levels %}
+          <option value="{{ val }}" {% if request.GET.level == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <input type="number" name="hours" value="{{ request.GET.hours }}" placeholder="Hours" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="teacher" value="{{ request.GET.teacher }}" placeholder="Teacher Name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-2 d-flex gap-1">
+      <button type="submit" class="btn btn-secondary btn-sm flex-grow-1">Filter</button>
+      <a href="{% url 'courses' %}" class="btn btn-outline-secondary btn-sm flex-grow-1">Clear</a>
+    </div>
+  </form>
+
   <table class="table table-bordered">
     <thead>
       <tr>

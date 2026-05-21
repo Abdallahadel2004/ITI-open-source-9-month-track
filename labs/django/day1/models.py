@@ -2,7 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 
-LEVEL_CHOICES = [
+level_choices = [
     ('L1', 'Level 1'),
     ('L2', 'Level 2'),
     ('L3', 'Level 3'),
@@ -11,7 +11,7 @@ LEVEL_CHOICES = [
     ('L6', 'Level 6'),
 ]
 
-GENDER_CHOICES = [
+gender_choices = [
     ('M', 'Male'),
     ('F', 'Female'),
 ]
@@ -37,7 +37,7 @@ class Teacher(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=100)
     hours = models.IntegerField()
-    level = models.CharField(max_length=2, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=2, choices=level_choices)
     teacher = models.ForeignKey(
         Teacher,
         on_delete=models.SET_NULL,
@@ -55,9 +55,9 @@ class Student(models.Model):
     phone = models.CharField(max_length=15)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     age = models.IntegerField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=gender_choices)
     address = models.CharField(max_length=200)
-    level = models.CharField(max_length=2, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=2, choices=level_choices)
     courses = models.ManyToManyField(Course, through='Enrollment', blank=True)
 
     def __str__(self):

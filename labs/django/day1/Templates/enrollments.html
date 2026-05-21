@@ -23,6 +23,29 @@
   </form>
 
   <hr>
+
+  <h5>Filter Enrollments</h5>
+  <form action="{% url 'enrollments' %}" method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+      <input type="text" name="student" value="{{ request.GET.student }}" placeholder="Student Name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="course" value="{{ request.GET.course }}" placeholder="Course Name" class="form-control form-control-sm">
+    </div>
+    <div class="col-md-3">
+      <select name="level" class="form-select form-select-sm">
+        <option value="">Choose Student Level</option>
+        {% for val, label in levels %}
+          <option value="{{ val }}" {% if request.GET.level == val %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 d-flex gap-1">
+      <button type="submit" class="btn btn-secondary btn-sm flex-grow-1">Filter</button>
+      <a href="{% url 'enrollments' %}" class="btn btn-outline-secondary btn-sm flex-grow-1">Clear</a>
+    </div>
+  </form>
+
   <table class="table table-bordered">
     <thead>
       <tr>

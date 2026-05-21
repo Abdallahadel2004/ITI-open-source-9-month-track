@@ -82,7 +82,7 @@ def delete_student(request, student_id):
 def courses(request):
     course_list = Course.objects.select_related('teacher').all()
 
-    # Filters
+
     name = request.GET.get('name')
     level = request.GET.get('level')
     hours = request.GET.get('hours')
