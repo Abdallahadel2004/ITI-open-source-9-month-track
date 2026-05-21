@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1>Enrollments</h1>
+
+  <h5>Enroll Student in Course</h5>
+  <form action="{% url 'enroll_student' %}" method="post">
+    {% csrf_token %}
+    <select name="student_id" required>
+      <option value="">Select Student</option>
+      {% for student in students %}
+        <option value="{{ student.id }}">{{ student.name }} ({{ student.get_level_display }})</option>
+      {% endfor %}
+    </select>
+    <select name="course_id" required>
+      <option value="">Select Course</option>
+      {% for course in courses %}
+        <option value="{{ course.id }}">{{ course.name }} ({{ course.get_level_display }})</option>
+      {% endfor %}
+    </select>
+    <input type="number" name="grade" placeholder="Grade" step="0.01" min="0" max="100">
+    <button type="submit" class="btn btn-primary btn-sm">Enroll</button>
+  </form>
+
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Student</th><th>Course</th><th>Teacher</th><th>Grade</th><th>Date</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in enrollments %}
+      <tr>
+        <td>{{ e.student.name }} ({{ e.student.get_level_display }})</td>
+        <td>{{ e.course.name }} ({{ e.course.get_level_display }})</td>
+        <td>{% if e.course.teacher %}{{ e.course.teacher.name }}{% else %}None{% endif %}</td>
+        <td>{% if e.grade is not None %}{{ e.grade }}{% else %}-{% endif %}</td>
+        <td>{{ e.enrolled_at|date:"Y-m-d" }}</td>
+        <td><a href="{% url 'unenroll_student' e.id %}" class="btn btn-danger btn-sm">Unenroll</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6">No enrollments.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

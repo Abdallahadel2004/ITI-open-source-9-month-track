@@ -1,0 +1,53 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1>Students</h1>
+
+  <form action="{% url 'add_student' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="phone" placeholder="Phone" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <select name="gender" required>
+      <option value="">Gender</option>
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+    </select>
+    <input type="text" name="address" placeholder="Address" required>
+    <select name="level" required>
+      <option value="">Level</option>
+      {% for val, label in levels %}
+        <option value="{{ val }}">{{ label }}</option>
+      {% endfor %}
+    </select>
+    <input type="file" name="image">
+    <button type="submit" class="btn btn-primary btn-sm">Add</button>
+  </form>
+
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th><th>Name</th><th>Phone</th><th>Age</th><th>Gender</th><th>Image</th><th>Address</th><th>Level</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.get_gender_display }}</td>
+        <td><img src="{{ student.image.url }}" alt="{{ student.name }}" width="100" class="img-thumbnail" style="max-height: 100px; object-fit: cover;"></td>
+        <td>{{ student.address }}</td>
+        <td>{{ student.get_level_display }}</td>
+        <td><a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="9">No students.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

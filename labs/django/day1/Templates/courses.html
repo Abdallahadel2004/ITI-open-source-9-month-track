@@ -1,0 +1,68 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1>Courses</h1>
+
+  <h5>Add Course</h5>
+  <form action="{% url 'add_course' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Course Name" required>
+    <input type="number" name="hours" placeholder="Hours" required>
+    <select name="level" required>
+      <option value="">Level</option>
+      {% for val, label in levels %}
+        <option value="{{ val }}">{{ label }}</option>
+      {% endfor %}
+    </select>
+    <select name="teacher">
+      <option value="">No Teacher</option>
+      {% for teacher in teachers %}
+        <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary btn-sm">Add</button>
+  </form>
+
+  <hr>
+  <h5>Assign Teacher to Course</h5>
+  <form action="{% url 'assign_teacher' %}" method="post">
+    {% csrf_token %}
+    <select name="course_id" required>
+      <option value="">Select Course</option>
+      {% for course in courses %}
+        <option value="{{ course.id }}">{{ course.name }}</option>
+      {% endfor %}
+    </select>
+    <select name="teacher_id" required>
+      <option value="">Select Teacher</option>
+      {% for teacher in teachers %}
+        <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-success btn-sm">Assign</button>
+  </form>
+
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th><th>Name</th><th>Hours</th><th>Level</th><th>Teacher</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.hours }}</td>
+        <td>{{ course.get_level_display }}</td>
+        <td>{% if course.teacher %}{{ course.teacher.name }}{% else %}No Teacher{% endif %}</td>
+        <td><a href="{% url 'delete_course' course.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6">No courses.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
