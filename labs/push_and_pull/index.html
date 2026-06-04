@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple AJAX Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>User Registration</h2>
+    <p class="subtitle">Complete the form below to register using standard JavaScript AJAX.</p>
+    
+    <form id="registerForm">
+      <!-- Username Group with live AJAX check on typing -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="Enter username">
+        <div id="usernameStatus" class="status-msg"></div>
+      </div>
+
+      <!-- Email Group -->
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter email address">
+      </div>
+
+      <!-- Password Group -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Enter password">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" id="submitBtn">Register</button>
+    </form>
+
+    <!-- Simple div to show AJAX results -->
+    <div id="result" class="result-box hide"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

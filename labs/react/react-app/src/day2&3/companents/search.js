@@ -8,13 +8,19 @@ function Search({ onSearch }) {
     onSearch(searchInput);
   };
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    onSearch(value); 
+  };
+
   return (
     <form onSubmit={handleSearch} className="search-form">
       <input 
         type="text" 
         placeholder="Search movies..." 
         value={searchInput} 
-        onChange={(e) => setSearchInput(e.target.value)} 
+        onChange={handleChange} 
         className="search-input"
       />
       <button type="submit" className="search-btn">Search</button>
@@ -23,3 +29,4 @@ function Search({ onSearch }) {
 }
 
 export default Search;
+
